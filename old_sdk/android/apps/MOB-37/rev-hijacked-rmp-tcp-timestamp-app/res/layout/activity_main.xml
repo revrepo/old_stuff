@@ -1,0 +1,84 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.rev.rmp.http.MainActivity" >
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/click"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical" >
+
+        <EditText
+            android:id="@+id/et_url"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="url" >
+        </EditText>
+
+        <TextView
+            android:id="@+id/tv_iterations"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Iterations"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            />
+
+        <EditText
+            android:id="@+id/et_iterations"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="phone"
+           >
+
+            <requestFocus />
+        </EditText>
+
+        <TextView
+            android:id="@+id/tv_frequency"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Frequency"
+            android:textAppearance="?android:attr/textAppearanceMedium" 
+            />
+
+        <EditText
+            android:id="@+id/et_frequency"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="phone" 
+            />
+
+        <CheckBox
+            android:id="@+id/cb_rmptcp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SDK TCP (else Default TCP)" />
+
+        <TextView
+            android:id="@+id/tv_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/click"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="Send Request" />
+
+</RelativeLayout>

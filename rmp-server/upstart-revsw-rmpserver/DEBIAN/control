@@ -1,0 +1,7 @@
+Package: revsw-rmpserver
+Version: 1.0.2-2
+Section: base
+Priority: optional
+Architecture: amd64
+Maintainer: Akhil Shashidhar <akhil@revsw.com>
+Description: RevSw Rmp Server

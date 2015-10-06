@@ -1,0 +1,47 @@
+From f878cb6cb8e437d59a8efa99ddb75e0350a25509 Mon Sep 17 00:00:00 2001
+From: Tom Kavanagh <tom.revsw@gmail.com>
+Date: Mon, 12 Jan 2015 17:04:58 -0800
+Subject: [PATCH 3/3] Exporting tcp_data_snd_check()
+
+This is needed by RBE at the current time.  This will need t be removed
+at some point and a work around added in.
+
+Signed-off-by: Tom Kavanagh <tom.revsw@gmail.com>
+---
+ include/net/tcp.h    | 1 +
+ net/ipv4/tcp_input.c | 3 ++-
+ 3 files changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/include/net/tcp.h b/include/net/tcp.h
+index d512522..cd6bfb6 100644
+--- a/include/net/tcp.h
++++ b/include/net/tcp.h
+@@ -369,6 +369,7 @@ int tcp_rcv_state_process(struct sock *sk, struct sk_buff *skb,
+ 			  const struct tcphdr *th, unsigned int len);
+ void tcp_rcv_established(struct sock *sk, struct sk_buff *skb,
+ 			 const struct tcphdr *th, unsigned int len);
++void tcp_data_snd_check(struct sock *sk);
+ void tcp_rcv_space_adjust(struct sock *sk);
+ void tcp_cleanup_rbuf(struct sock *sk, int copied);
+ int tcp_twsk_unique(struct sock *sk, struct sock *sktw, void *twp);
+diff --git a/net/ipv4/tcp_input.c b/net/ipv4/tcp_input.c
+index 9e63741..42c462a 100644
+--- a/net/ipv4/tcp_input.c
++++ b/net/ipv4/tcp_input.c
+@@ -4781,11 +4781,12 @@ static void tcp_check_space(struct sock *sk)
+ 	}
+ }
+ 
+-static inline void tcp_data_snd_check(struct sock *sk)
++void tcp_data_snd_check(struct sock *sk)
+ {
+ 	tcp_push_pending_frames(sk);
+ 	tcp_check_space(sk);
+ }
++EXPORT_SYMBOL(tcp_data_snd_check);
+ 
+ /*
+  * Check if sending an ack is needed.
+-- 
+1.9.1
+

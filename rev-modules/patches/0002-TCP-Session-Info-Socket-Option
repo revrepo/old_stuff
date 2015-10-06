@@ -1,0 +1,86 @@
+From c81c73bdb42dbb096d23840557e5e57b91a414cc Mon Sep 17 00:00:00 2001
+From: Tom Kavanagh <tom.revsw@gmail.com>
+Date: Mon, 12 Jan 2015 17:02:56 -0800
+Subject: [PATCH 2/3] TCP Session Info Socket Option
+
+Add a socket option to get the TCP session information for an
+IP address.
+
+Signed-off-by: Tom Kavanagh <tom.revsw@gmail.com>
+---
+ include/uapi/linux/tcp.h | 15 +++++++++++++++
+ net/ipv4/tcp.c           | 25 +++++++++++++++++++++++++
+ 2 files changed, 40 insertions(+)
+
+diff --git a/include/uapi/linux/tcp.h b/include/uapi/linux/tcp.h
+index 377f1e5..c01cdcc 100644
+--- a/include/uapi/linux/tcp.h
++++ b/include/uapi/linux/tcp.h
+@@ -112,6 +112,7 @@ enum {
+ #define TCP_FASTOPEN		23	/* Enable FastOpen on listeners */
+ #define TCP_TIMESTAMP		24
+ #define TCP_NOTSENT_LOWAT	25	/* limit number of unsent bytes in write queue */
++#define TCP_SESSION_INFO	26	/* Retrieve TCP session metrics */
+ 
+ struct tcp_repair_opt {
+ 	__u32	opt_code;
+@@ -188,6 +189,20 @@ struct tcp_info {
+ 	__u32	tcpi_total_retrans;
+ };
+ 
++/* TCP Session Info */
++#define TCP_SESSION_INFO_VERSION 3
++
++struct tcp_session_user_info {
++	__u32 version;
++	__u32 cookie;
++	__u32 latency_high;
++	__u32 latency_low;
++	__u32 latency_last;
++	__u32 bandwidth_high;
++	__u32 bandwidth_low;
++	__u32 bandwidth_last;
++};
++
+ /* for TCP_MD5SIG socket option */
+ #define TCP_MD5SIG_MAXKEYLEN	80
+ 
+diff --git a/net/ipv4/tcp.c b/net/ipv4/tcp.c
+index e06e1df..eca0991 100644
+--- a/net/ipv4/tcp.c
++++ b/net/ipv4/tcp.c
+@@ -2756,6 +2756,31 @@ static int do_tcp_getsockopt(struct sock *sk, int level,
+ 	case TCP_NOTSENT_LOWAT:
+ 		val = tp->notsent_lowat;
+ 		break;
++	case TCP_SESSION_INFO: {
++		if (get_user(len, optlen))
++			return -EFAULT;
++
++		if (len > 0) {
++			unsigned char sinfo[len];
++			const struct tcp_congestion_ops *ca_ops;
++
++			ca_ops = inet_csk(sk)->icsk_ca_ops;
++
++			if (ca_ops && ca_ops->get_session_info) {
++				if (ca_ops->get_session_info(sk, sinfo, &len))
++					return -EFAULT;
++
++				if (put_user(len, optlen))
++					return -EFAULT;
++
++				if (copy_to_user(optval, &sinfo, len))
++					return -EFAULT;
++
++				return 0;
++			}
++		}
++		return -EFAULT;
++	}
+ 	default:
+ 		return -ENOPROTOOPT;
+ 	}
+-- 
+1.9.1
+

@@ -1,0 +1,8 @@
+# Don't include dexedLibs
+dexedLibs
+
+MainActivity.apk
+jarlist.cache
+classes
+classes.dex
+resources.ap_

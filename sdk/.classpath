@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
+	<classpathentry kind="lib" path="/Users/tkavanagh/Documents/source_code/android/libs/barchart-udt-bundle-2.3.0.jar"/>
+	<classpathentry kind="lib" path="/Users/tkavanagh/Documents/source_code/android/libs/jzlib-1.1.2.jar"/>
+	<classpathentry kind="lib" path="/Users/tkavanagh/Documents/source_code/android/libs/netty-buffer-4.1.0.Beta3.jar"/>
+	<classpathentry kind="lib" path="/Users/tkavanagh/Documents/source_code/android/libs/netty-codec-4.1.0.Beta3.jar"/>
+	<classpathentry kind="lib" path="/Users/tkavanagh/Documents/source_code/android/libs/netty-codec-http-4.1.0.Beta3.jar"/>
+	<classpathentry kind="lib" path="/Users/tkavanagh/Documents/source_code/android/libs/netty-common-4.1.0.Beta3.jar"/>
+	<classpathentry kind="lib" path="/Users/tkavanagh/Documents/source_code/android/libs/netty-handler-4.1.0.Beta3.jar"/>
+	<classpathentry kind="lib" path="/Users/tkavanagh/Documents/source_code/android/libs/netty-transport-4.1.0.Beta3.jar"/>
+	<classpathentry kind="lib" path="/Users/tkavanagh/Documents/source_code/android/libs/netty-transport-udt-4.1.0.Beta3.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

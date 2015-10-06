@@ -1,0 +1,4 @@
+This application uses SDK v1.3 for Http communication.
+
+The application is to test the Http communication of SDK v1.3. As of now the application can only test GET method.
+ 

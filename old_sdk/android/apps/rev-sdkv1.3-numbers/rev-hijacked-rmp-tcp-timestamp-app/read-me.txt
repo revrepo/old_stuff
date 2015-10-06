@@ -1,0 +1,11 @@
+This app uses SDKv1.3-dev (Developer's version)
+
+This app is to compare the timestamps between TCP and RMP communications.
+
+It takes a url as input. And takes the decision from user whether to transport the communication over RMP or TCP (from the check box).
+After pressing "Send Request" button the app communicates with the server and displays the webpage on the screen. 
+Also after complete data download it displays the timestamp statistics in a pop-up.
+
+Note: 
+In case of TCP. First chunk/byte received time cannot be measured, so it always displayes 0(Zero).
+In case of RMP please make sure that udt-server is running.

@@ -1,0 +1,13 @@
+
+To generate a Debian package, follow these steps:
+
+* pwd -> <relative>/rmp-server/
+* cp -r upstart-revsw-rmpserver revsw-rmpserver_<version> (Ex: revsw-rmpserver_1.0.1-3)
+* cd revsw-rmpserver_<version>
+* mkdir -p ./opt/revsw-rmpserver/bin
+* mkdir -p ./opt/revsw-rmpserver/lib
+* mkdir -p ./opt/revsw-rmpserver/log
+* cp ../bin/revsw-rmpserver ./opt/revsw-rmpserver/bin/
+* cp ../bin/libudt.so ./opt/revsw-rmpserver/lib/
+* cd ../
+* dpkg --build revsw-rmpserver_<version>

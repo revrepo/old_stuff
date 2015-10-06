@@ -1,0 +1,126 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.rev.rmp.http.MainActivity" >
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bn_sendrequest"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical" >
+
+        <LinearLayout
+        	android:id="@+id/ll_domain"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:orientation="vertical" >
+            
+			<TextView
+    			android:id="@+id/tv_domainlabel"
+    			android:text="@string/Domain"
+    			android:layout_width="wrap_content"
+	    		android:layout_height="wrap_content" />
+            
+	        <Spinner
+    			android:id="@+id/sp_domain"
+    			android:layout_width="wrap_content"
+    			android:layout_height="wrap_content"
+    			android:prompt="@string/Domain" />
+		</LinearLayout>
+
+        <LinearLayout
+        	android:id="@+id/ll_object"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:orientation="vertical" >
+            
+			<TextView
+    			android:id="@+id/tv_objectlabel"
+    			android:text="@string/Object"
+    			android:layout_width="wrap_content"
+	    		android:layout_height="wrap_content" />
+            
+	        <Spinner
+    			android:id="@+id/sp_object"
+    			android:layout_width="wrap_content"
+    			android:layout_height="wrap_content" />
+		</LinearLayout>
+        
+        <LinearLayout
+        	android:id="@+id/ll_iterations"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:orientation="vertical" >
+            
+			<TextView
+    			android:id="@+id/tv_iterationslabel"
+    			android:text="@string/Iterations"
+    			android:layout_width="wrap_content"
+	    		android:layout_height="wrap_content" />
+            
+        	<Spinner
+    			android:id="@+id/sp_iterations"
+    			android:layout_width="wrap_content"
+    			android:layout_height="wrap_content" />
+		</LinearLayout>
+
+        <LinearLayout
+        	android:id="@+id/ll_testdelay"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:orientation="vertical" >
+            
+			<TextView
+    			android:id="@+id/tv_testdelaylabel"
+    			android:text="@string/TestDelay"
+    			android:layout_width="wrap_content"
+	    		android:layout_height="wrap_content" />
+            
+        	<Spinner
+    			android:id="@+id/sp_testdelay"
+    			android:layout_width="wrap_content"
+    			android:layout_height="wrap_content" />
+		</LinearLayout>
+        		
+		<CheckBox
+            android:id="@+id/cb_tcp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/TCP" />
+
+		<CheckBox
+            android:id="@+id/cb_dots"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/DOTS" />
+		
+		<CheckBox
+            android:id="@+id/cb_rmp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/RMP" />
+				
+        <TextView
+            android:id="@+id/tv_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/bn_sendrequest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/SendRequest" />
+
+</RelativeLayout>

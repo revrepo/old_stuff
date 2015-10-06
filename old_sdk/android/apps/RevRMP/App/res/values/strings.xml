@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">RevSDK</string>
+    <string name="URL">URL</string>
+    <string name="Domain">Domain</string>
+    <string name="Object">File</string>
+    <string name="Iterations">Iterations</string>
+    <string name="Iteration">Iteration</string>
+    <string name="TestDelay">Test Delay (seconds)</string>
+    <string name="TCP">TCP</string>
+    <string name="DOTS">DOTS</string>
+    <string name="RMP">RMP</string>
+    <string name="SendRequest">Send Request</string>
+    <string name="PopupWindow">It\'s a Popup Window</string>
+    <string name="PopupDescription">Simple Popup Window</string>
+    <string name="Dismiss">Dismiss</string>
+    <string name="SendEmail">Send Email</string>
+    <string name="Results">Results</string>
+    <string name="action_settings">Settings</string>
+
+    <string-array name="domain_array">
+        <item>www.mmafighting.com</item>
+        <item>www.popsugar.com</item>
+        <item>shop.gopro.com</item>
+        <item>www.yellowpages.com</item>
+    </string-array>
+
+    <string-array name="object_array">
+    </string-array>
+    
+    <string-array name="iterations_array">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+
+    <string-array name="delay_array">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>10</item>
+    </string-array>
+    
+</resources>

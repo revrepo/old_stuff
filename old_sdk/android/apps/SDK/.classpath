@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
+	<classpathentry kind="lib" path="/home/prashanth/Downloads/rev_sdk/SDKv1.3/barchart-udt-bundle-2.3.0.jar"/>
+	<classpathentry kind="lib" path="/home/prashanth/Downloads/rev_sdk/SDKv1.3/jzlib-1.1.2.jar"/>
+	<classpathentry kind="lib" path="/home/prashanth/Downloads/rev_sdk/SDKv1.3/netty-buffer-4.1.0.Beta3.jar"/>
+	<classpathentry kind="lib" path="/home/prashanth/Downloads/rev_sdk/SDKv1.3/netty-codec-4.1.0.Beta3.jar"/>
+	<classpathentry kind="lib" path="/home/prashanth/Downloads/rev_sdk/SDKv1.3/netty-codec-http-4.1.0.Beta3.jar"/>
+	<classpathentry kind="lib" path="/home/prashanth/Downloads/rev_sdk/SDKv1.3/netty-common-4.1.0.Beta3.jar"/>
+	<classpathentry kind="lib" path="/home/prashanth/Downloads/rev_sdk/SDKv1.3/netty-handler-4.1.0.Beta3.jar"/>
+	<classpathentry kind="lib" path="/home/prashanth/Downloads/rev_sdk/SDKv1.3/netty-transport-4.1.0.Beta3.jar"/>
+	<classpathentry kind="lib" path="/home/prashanth/Downloads/rev_sdk/SDKv1.3/netty-transport-udt-4.1.0.Beta3.jar"/>
+	<classpathentry kind="lib" path="/home/prashanth/Downloads/rev_sdk/SDKv1.3/rev-rmp-v1.3.jar"/>
+	<classpathentry kind="lib" path="/home/prashanth/Downloads/rev_sdk/SDKv1.3/slf4j-android-1.7.7.jar"/>
+	<classpathentry kind="lib" path="/home/prashanth/Downloads/rev_sdk/SDKv1.3/slf4j-api-1.7.7.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
