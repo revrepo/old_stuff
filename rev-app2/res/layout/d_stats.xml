@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/protocollabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+    
+	<TableLayout
+	    android:id="@+id/resultstable"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content" >
+    	
+    	<TableRow
+        	android:id="@+id/tableRow0"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:padding="5dip" >
+ 
+        	<TextView
+        	    android:id="@+id/iterationlabel"
+        	    android:layout_gravity="center"
+        	    android:layout_marginLeft="10dp"
+        	    android:layout_marginStart="10dp"
+        	    android:layout_marginRight="5dp"
+        	    android:layout_marginEnd="5dp"
+        	    android:gravity="center"
+        	    android:text="@string/Iteration"
+        	    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        	<TextView
+        	    android:id="@+id/tcplabel"
+        	    android:layout_gravity="center"
+        	    android:layout_marginLeft="15dp"
+        	    android:layout_marginStart="15dp"
+        	    android:layout_marginRight="10dp"
+        	    android:layout_marginEnd="10dp"
+        	    android:gravity="center"
+        	    android:text="@string/TCP"
+        	    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+			<TextView
+			    android:id="@+id/dotslabel"
+			    android:layout_gravity="center"
+			    android:layout_marginLeft="10dp"
+        	    android:layout_marginStart="10dp"
+			    android:layout_marginRight="10dp"
+			    android:layout_marginEnd="10dp"
+			    android:gravity="center"
+			    android:text="@string/DOTS"
+			    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+			<TextView
+			    android:id="@+id/rmplabel"
+			    android:layout_gravity="center"
+			    android:layout_marginLeft="10dp"
+        	    android:layout_marginStart="10dp"
+			    android:layout_marginRight="10dp"
+			    android:layout_marginEnd="10dp"
+			    android:gravity="center"
+			    android:text="@string/RMP"
+			    android:textAppearance="?android:attr/textAppearanceSmall" />
+			
+    	</TableRow>
+ 
+    	<View
+        	android:layout_height="2dip"
+        	android:background="#FF0000" />
+    	
+    	<TableRow
+        	android:id="@+id/tableRow1"
+        	android:layout_width="wrap_content"
+    	    android:layout_height="wrap_content"
+	        android:padding="5dip" >
+        	<TextView
+            	android:id="@+id/iterationvalue1"
+            	android:layout_marginLeft="10dp"
+            	android:layout_marginRight="10dp"
+            	android:layout_marginStart="10dp"
+            	android:layout_gravity="center"
+            	android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        	<TextView
+            	android:id="@+id/tcpvalue1"
+            	android:layout_marginLeft="10dp"
+            	android:layout_marginRight="10dp"
+            	android:layout_marginStart="10dp"
+            	android:layout_gravity="center"
+            	android:textAppearance="?android:attr/textAppearanceSmall" />
+
+			<TextView
+            	android:id="@+id/dotsvalue1"
+				android:layout_marginLeft="10dp"
+            	android:layout_marginRight="10dp"
+            	android:layout_marginStart="5dp"
+            	android:layout_gravity="center"
+        	    android:textAppearance="?android:attr/textAppearanceSmall" />
+			
+			<TextView
+            	android:id="@+id/rmpvalue1"
+				android:layout_marginLeft="10dp"
+            	android:layout_marginRight="10dp"
+            	android:layout_marginStart="5dp"
+            	android:layout_gravity="center"
+            	android:textAppearance="?android:attr/textAppearanceSmall" />			
+		</TableRow>
+
+    	<TableRow
+        	android:id="@+id/tableRow2"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:padding="5dip" >
+        	<TextView
+            	android:id="@+id/iterationvalue2"
+            	android:layout_marginLeft="10dp"
+            	android:layout_marginRight="10dp"
+            	android:layout_marginStart="10dp"
+            	android:layout_gravity="center"
+            	android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        	<TextView
+            	android:id="@+id/tcpvalue2"
+            	android:layout_marginLeft="10dp"
+            	android:layout_marginRight="10dp"
+            	android:layout_marginStart="10dp"
+        	    android:layout_gravity="center"
+	            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+			<TextView
+        	    android:id="@+id/dotsvalue2"
+				android:layout_marginLeft="10dp"
+	            android:layout_marginRight="10dp"
+				android:layout_marginStart="5dp"
+				android:layout_gravity="center"
+    	        android:textAppearance="?android:attr/textAppearanceSmall" />
+			
+			<TextView
+            	android:id="@+id/rmpvalue2"
+				android:layout_marginLeft="10dp"
+            	android:layout_marginRight="10dp"
+            	android:layout_marginStart="5dp"
+            	android:layout_gravity="center"
+            	android:textAppearance="?android:attr/textAppearanceSmall" />			
+	    </TableRow>
+    
+    	<TableRow
+        	android:id="@+id/tableRow3"
+    	    android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+        	android:padding="5dip" >
+        	<TextView
+        	    android:id="@+id/iterationvalue3"
+    	        android:layout_marginLeft="10dp"
+	            android:layout_marginRight="10dp"
+            	android:layout_marginStart="10dp"
+        	    android:layout_gravity="center"
+	            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        	<TextView
+        	    android:id="@+id/tcpvalue3"
+    	        android:layout_marginLeft="10dp"
+	            android:layout_marginRight="10dp"
+            	android:layout_marginStart="10dp"
+        	    android:layout_gravity="center"
+	            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+			<TextView
+	            android:id="@+id/dotsvalue3"
+				android:layout_marginLeft="10dp"
+	            android:layout_marginRight="10dp"
+            	android:layout_marginStart="5dp"
+        	    android:layout_gravity="center"
+	            android:textAppearance="?android:attr/textAppearanceSmall" />
+			
+			<TextView
+            	android:id="@+id/rmpvalue3"
+				android:layout_marginLeft="10dp"
+            	android:layout_marginRight="10dp"
+            	android:layout_marginStart="5dp"
+            	android:layout_gravity="center"
+            	android:textAppearance="?android:attr/textAppearanceSmall" />			
+	    </TableRow>
+    
+	    <TableRow
+	        android:id="@+id/tableRow4"
+        	android:layout_width="wrap_content"
+    	    android:layout_height="wrap_content"
+	        android:padding="5dip" >
+	
+        	<TextView
+        		android:id="@+id/iterationvalue4"
+            	android:layout_marginLeft="10dp"
+        	    android:layout_marginRight="10dp"
+    	        android:layout_marginStart="10dp"
+	            android:layout_gravity="center"
+            	android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        	<TextView
+        	    android:id="@+id/tcpvalue4"
+    	        android:layout_marginLeft="10dp"
+	            android:layout_marginRight="10dp"
+            	android:layout_marginStart="10dp"
+        	    android:layout_gravity="center"
+	            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+			<TextView
+            	android:id="@+id/dotsvalue4"
+				android:layout_marginLeft="10dp"
+    	        android:layout_marginRight="10dp"
+	            android:layout_marginStart="5dp"
+            	android:layout_gravity="center"
+    	        android:textAppearance="?android:attr/textAppearanceSmall" />
+			
+			<TextView
+            	android:id="@+id/rmpvalue4"
+				android:layout_marginLeft="10dp"
+            	android:layout_marginRight="10dp"
+            	android:layout_marginStart="5dp"
+            	android:layout_gravity="center"
+            	android:textAppearance="?android:attr/textAppearanceSmall" />			
+		</TableRow>
+    
+    	<TableRow
+        	android:id="@+id/tableRow5"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:padding="5dip" >
+        	<TextView
+            	android:id="@+id/iterationvalue5"
+            	android:layout_marginLeft="10dp"
+            	android:layout_marginRight="10dp"
+            	android:layout_marginStart="10dp"
+            	android:layout_gravity="center"
+            	android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        	<TextView
+            	android:id="@+id/tcpvalue5"
+            	android:layout_marginLeft="10dp"
+            	android:layout_marginRight="10dp"
+            	android:layout_marginStart="10dp"
+            	android:layout_gravity="center"
+            	android:textAppearance="?android:attr/textAppearanceSmall" />
+
+			<TextView
+            	android:id="@+id/dotsvalue5"
+				android:layout_marginLeft="10dp"
+            	android:layout_marginRight="10dp"
+            	android:layout_marginStart="5dp"
+            	android:layout_gravity="center"
+            	android:textAppearance="?android:attr/textAppearanceSmall" />
+			
+			<TextView
+            	android:id="@+id/rmpvalue5"
+				android:layout_marginLeft="10dp"
+            	android:layout_marginRight="10dp"
+            	android:layout_marginStart="5dp"
+            	android:layout_gravity="center"
+            	android:textAppearance="?android:attr/textAppearanceSmall" />			
+			</TableRow>
+		</TableLayout>
+    		
+    	<Button
+			android:id="@+id/bt_back"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/Dismiss" />
+				
+
+</LinearLayout>
