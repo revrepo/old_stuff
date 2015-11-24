@@ -1,0 +1,20 @@
+{
+  "name": "db-consistency-check",
+  "version": "0.0.0",
+  "description": "Rev Databases Consistency Checking Scripts",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com//revrepo/db-consistency-check"
+  },
+  "author": "",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "mongodb": "~2.0.39",
+    "check-types": "~3.3.0",
+    "winston": "~1.0.1"
+  }
+}
