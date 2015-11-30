@@ -1,0 +1,30 @@
+﻿<Page
+    x:Class="SimpleWebView.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SimpleWebView"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="125" />
+            </Grid.ColumnDefinitions>
+            <TextBox x:ConnectionId='2' x:Name="AddressBar" InputScope="Url" Grid.Column="0" Margin="5,0"                         />
+            <Button x:ConnectionId='3' Content="Go" Grid.Column="1" HorizontalAlignment="Stretch" Margin="5,0"                     />
+        </Grid>
+        <WebView x:ConnectionId='1' x:Name="WebView" Grid.Row="1" 
+                                                                 
+                                                                   
+                                                                           
+                                                                             />
+    </Grid>
+</Page>
+
