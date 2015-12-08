@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -23,9 +25,13 @@ namespace SimpleWebView
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        private ConcurrentDictionary<string, Stopwatch> _Timers;
+
         public MainPage()
         {
             this.InitializeComponent();
+
+            _Timers = new ConcurrentDictionary<string, Stopwatch>();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -59,25 +65,51 @@ namespace SimpleWebView
                 _Navigate();
             }
         }
-
+        
         private void WebView_NavigationStarting(WebView sender, WebViewNavigationStartingEventArgs args)
         {
-            System.Diagnostics.Debug.WriteLine("Navigation starting: " + args.Uri.ToString());
+            _StartTimer(args);
         }
 
         private void WebView_NavigationCompleted(WebView sender, WebViewNavigationCompletedEventArgs args)
         {
-            System.Diagnostics.Debug.WriteLine("Navigation completed: " + args.Uri.ToString());
+            _CompleteTimer(args);
         }
 
         private void WebView_FrameNavigationStarting(WebView sender, WebViewNavigationStartingEventArgs args)
         {
-            System.Diagnostics.Debug.WriteLine("Frame navigation starting: " + args.Uri.ToString());
+            _StartTimer(args);
+        }
+
+        private void _StartTimer(WebViewNavigationStartingEventArgs args)
+        {
+            if (args.Uri.ToString() == "about:blank")
+            {
+                return;
+            }
+
+
+            var sw = new Stopwatch();
+            sw.Start();
+
+            _Timers.TryAdd(args.Uri.ToString(), sw);
         }
 
         private void WebView_FrameNavigationCompleted(WebView sender, WebViewNavigationCompletedEventArgs args)
         {
-            System.Diagnostics.Debug.WriteLine("Frame navigation completed: " + args.Uri.ToString());
+            _CompleteTimer(args);
+        }
+
+        private void _CompleteTimer(WebViewNavigationCompletedEventArgs args)
+        {
+            Stopwatch sw = null;
+
+            if (_Timers.TryRemove(args.Uri.ToString(), out sw))
+            {
+                sw.Stop();
+                System.Diagnostics.Debug.WriteLine(string.Format("[{0}ms] {1}", sw.ElapsedMilliseconds, args.Uri.ToString()));
+                sw = null;
+            }
         }
     }
 }
