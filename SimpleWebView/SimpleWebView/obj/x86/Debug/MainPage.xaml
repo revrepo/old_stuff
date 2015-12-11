@@ -20,11 +20,27 @@
             <TextBox x:ConnectionId='2' x:Name="AddressBar" InputScope="Url" Grid.Column="0" Margin="5,0"                         />
             <Button x:ConnectionId='3' Content="Go" Grid.Column="1" HorizontalAlignment="Stretch" Margin="5,0"                     />
         </Grid>
-        <WebView x:ConnectionId='1' x:Name="WebView" Grid.Row="1" 
-                                                                 
-                                                                   
-                                                                           
-                                                                             />
+        
+        <!--desktop-->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <WebView x:ConnectionId='1' x:Name="WebView"
+                     Margin="0,10,0,0"
+                                                                     
+                                                                       
+                                                                               
+                                                                                 />
+            
+            <ListBox Margin="0,10,0,0" Grid.Column="1"
+                ItemsSource="{Binding StatusItems}"
+                MinHeight="200"
+                MinWidth="400"
+                VerticalAlignment="Stretch" 
+                HorizontalAlignment="Stretch" />
+        </Grid>
     </Grid>
 </Page>
 

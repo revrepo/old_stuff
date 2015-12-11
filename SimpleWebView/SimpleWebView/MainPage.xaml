@@ -20,10 +20,26 @@
             <TextBox x:Name="AddressBar" InputScope="Url" Grid.Column="0" Margin="5,0" KeyUp="AddressBar_KeyUp"/>
             <Button Content="Go" Grid.Column="1" HorizontalAlignment="Stretch" Margin="5,0" Click="Button_Click"/>
         </Grid>
-        <WebView x:Name="WebView" Grid.Row="1" 
-                 NavigationStarting="WebView_NavigationStarting" 
-                 NavigationCompleted="WebView_NavigationCompleted" 
-                 FrameNavigationStarting="WebView_FrameNavigationStarting" 
-                 FrameNavigationCompleted="WebView_FrameNavigationCompleted" />
+        
+        <!--desktop-->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <WebView x:Name="WebView"
+                     Margin="0,10,0,0"
+                     NavigationStarting="WebView_NavigationStarting" 
+                     NavigationCompleted="WebView_NavigationCompleted" 
+                     FrameNavigationStarting="WebView_FrameNavigationStarting" 
+                     FrameNavigationCompleted="WebView_FrameNavigationCompleted" />
+            
+            <ListBox Margin="0,10,0,0" Grid.Column="1"
+                ItemsSource="{Binding StatusItems}"
+                MinHeight="200"
+                MinWidth="400"
+                VerticalAlignment="Stretch" 
+                HorizontalAlignment="Stretch" />
+        </Grid>
     </Grid>
 </Page>

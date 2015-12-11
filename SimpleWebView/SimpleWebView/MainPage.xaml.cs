@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SimpleWebView.ViewModel;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -31,6 +32,8 @@ namespace SimpleWebView
         {
             this.InitializeComponent();
 
+            this.DataContext = new AppViewModel();
+
             _Timers = new ConcurrentDictionary<string, Stopwatch>();
         }
 
@@ -45,6 +48,8 @@ namespace SimpleWebView
             {
                 AddressBar.Text = "http://" + AddressBar.Text;
             }
+
+            (this.DataContext as AppViewModel).StatusItems.Clear();
 
             try
             {
@@ -88,7 +93,6 @@ namespace SimpleWebView
                 return;
             }
 
-
             var sw = new Stopwatch();
             sw.Start();
 
@@ -107,7 +111,13 @@ namespace SimpleWebView
             if (_Timers.TryRemove(args.Uri.ToString(), out sw))
             {
                 sw.Stop();
-                System.Diagnostics.Debug.WriteLine(string.Format("[{0}ms] {1}", sw.ElapsedMilliseconds, args.Uri.ToString()));
+
+                var statusItem = string.Format("[{0}ms] {1}", sw.ElapsedMilliseconds, args.Uri.ToString());
+
+                (this.DataContext as AppViewModel).StatusItems.Add(statusItem);
+
+                Debug.WriteLine(statusItem);
+
                 sw = null;
             }
         }
