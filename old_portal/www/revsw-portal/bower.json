@@ -1,0 +1,39 @@
+{
+  "name": "angular",
+  "version": "0.0.0",
+  "homepage": "https://github.com/konstantinzolotarev/portal",
+  "authors": [
+    "Konstantin Zolotarev <konstantin.zolotarev@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.6",
+    "angular-base64": "~2.0.5",
+    "angular-bootstrap": "~0.13.4",
+    "angular-cookies": "~1.4.6",
+    "angular-resource": "~1.4.6",
+    "angular-sanitize": "~1.4.6",
+    "angular-touch": "~1.4.6",
+    "angular-ui-router": "~0.2.15",
+    "bootstrap": "~3.3.5",
+    "jsoneditor": "~4.2.1",
+    "lodash": "~3.10.1",
+    "ng-jsoneditor": "angular-tools/ng-jsoneditor",
+    "ngstorage": "~0.3.9",
+    "paper-drawer-panel": "PolymerElements/paper-drawer-panel#~1.0.3",
+    "angular-chart.js": "~0.8.4",
+    "Chart.js": "~1.0.2",
+    "moment": "~2.10.6",
+    "ui-select": "angular-ui-select#~0.13.1",
+    "paper-header-panel": "PolymerElements/paper-header-panel#~1.0.5",
+    "d3": "~3.5.6",
+    "topojson": "~1.6.19"
+  }
+}

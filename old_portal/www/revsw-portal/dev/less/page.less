@@ -1,0 +1,143 @@
+html, body {
+  height: 100%;
+}
+
+body {
+  padding-top: 60px;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.page-content {
+  min-height: 100%;
+}
+
+.page-inner {
+  padding-top: 20px;
+  //position: relative;
+  min-height: 1080px;
+  background-color: @app-color-grey-200;
+}
+
+.layout {
+  height: 100%;
+}
+
+.page-title {
+  margin-bottom: 24px;
+}
+
+section[main] {
+  overflow: auto;
+}
+
+.max-height-pre {
+  max-height: 400px;
+  overflow: auto;
+}
+
+.log-details {
+  cursor: pointer;
+
+  &:hover {
+    padding-left: 2px;
+  }
+}
+
+.strong {
+  font-weight: bold;
+}
+
+.spin {
+  -webkit-animation: fa-spin 1s infinite linear;
+  animation: fa-spin 1s infinite linear;
+}
+
+@-webkit-keyframes fa-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+
+@keyframes fa-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+
+.sortorder:after {
+  content: '\25b2';
+}
+.sortorder.reverse:after {
+  content: '\25bc';
+}
+
+.margin-top {
+  margin-top: 2em;
+}
+
+.margin-sm-top-bottom {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+table {
+
+  th.actions {
+    width: 120px;
+  }
+
+  tbody {
+
+    tr.disabled {
+      &>td, &>th {
+        color: @app-color-text-disabled;
+
+        .spin {
+          color: @app-color-grey;
+        }
+      }
+    }
+
+    tr.loading {
+      &>td, &th {
+        cursor: progress;
+      }
+    }
+
+    .actions {
+      a {
+        margin-right: 10px;
+      }
+    }
+  }
+}
+
+
+select.form-control.fixed {
+  width: 150px;
+}
+
+.popover {
+  z-index: 999;
+}
+
+
+table tbody tr td {
+  max-width: 300px;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

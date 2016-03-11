@@ -1,0 +1,90 @@
+<ul class="nav nav-tabs" id="sgroups_tab">
+	<li class="active">
+		<a href="#sgroups_list" class="sg_list" data-toggle="tab">
+			<span class="glyphicon glyphicon-list">
+			</span>
+			<span class="text">List</span>
+		</a>
+	</li>
+	<li class="">
+		<a href="#sg_create" class="sg_create" data-toggle="tab">
+			<span class="glyphicon glyphicon-plus-sign">
+			</span>
+			<span class="text">New</span>
+		</a>
+	</li>
+</ul>
+<div class="tab-content">
+	<div id="sgroups_list" class="tab-pane fade active in">
+		<table class="table table-condensed table-responsive table-hover">
+			<thead>
+				<tr>
+					<th>Group Name</th>
+                                        <th>Group Type</th>
+                                        <th>Servers</th>
+					<th>Created Date</th>
+					<th>Updated Date</th>
+					<th> </th>
+				</tr>
+			</thead>
+			<tbody class="data">
+			</tbody>
+		</table>
+		<div class="pagination"> </div>
+	</div>
+
+	<div class="tab-pane fade" id="sg_create">
+		<div class="row mart_med">
+			<form class="form-horizontal sg_registration_form" name="sg_registration_form" id="sg_registration_form">
+				<div class="form-group">
+					<label class="col-sm-4 control-label">Group Name</label>
+					<div class="col-sm-8">
+						<input type="text" name="groupName" class="form-control input-sm"/>
+					</div>
+				</div>
+				
+                                <div class="form-group">
+                                        <label class="col-sm-4 control-label">Group Type</label>
+                                        <div class="col-sm-8">
+                                            <select id="type-select" name="groupType" class="form-control input-sm">
+                                                <option value="">Select Type</option>
+                                                <option value="BP">Browser Proxy</option>
+                                                <option value="CO">Content Optimizer</option>
+                                            </select>
+                                        </div>
+                                </div>
+				<div class="form-group">
+					<label class="col-sm-4 control-label">Servers</label>
+					<div class="col-sm-8">
+						<input type="text" name="servers" class="form-control input-sm"/>
+					</div>
+				</div>
+                <div id="coServerGrp"  style="display:none;">
+                <div class="form-group">
+					<label class="col-sm-4 control-label">CO DNS Names</label>
+					<div class="col-sm-8">
+						<input type="text" name="co_cnames" class="form-control input-sm"/>
+					</div>
+				</div>
+                <div class="form-group pubName" style="display:none;">
+					<label class="col-sm-4 control-label">Public Group Name</label>
+					<div class="col-sm-8">
+						<input type="text" name="publicName" class="form-control input-sm"/>
+					</div>
+				</div>
+                 <div class="form-group">
+					<label class="col-sm-4 control-label"></label>
+					<div class="col-sm-8">
+						<input type="checkbox" name="serverType" id="serverPublic" class="form-chk input-sm" value="public"/> <label class="control-label chkLabel">Public</label> <input type="checkbox" name="serverType" class="form-chk input-sm" id="serverPrivate" value="private" checked="checked"/> <label class="control-label chkLabel">Private</label>
+					</div>
+				</div>    
+                </div>           
+				<div class="form-group">
+					<div class="col-sm-offset-4 col-sm-8">
+						<input type="button" value="Submit" class="btn btn-primary btn-sm btn-create-sgroup"/>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

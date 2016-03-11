@@ -1,0 +1,25 @@
+<h3>Bandwidth Usage</h3>
+<div filter-time-periods
+     ng-hide="!ngDomain"
+     fl-os="flOs"
+     fl-country="flCountry"
+     fl-device="flDevice"
+     ng-filters="filters"
+     on-filter="reloadTrafficStats()"></div>
+<div class="alert alert-info" ng-if="!_loading && (!ngDomain || !traffic.labels.length)">
+  No data to display
+</div>
+<div class="alert alert-info" ng-if="_loading">
+  <i class="glyphicon glyphicon-refresh spin"></i>&nbsp;
+  Loading
+</div>
+<div ng-hide="!traffic.labels || !traffic.labels.length">
+  <!--<canvas class="chart chart-line"-->
+          <!--chart-options="chartOptions"-->
+          <!--chart-data="traffic.data"-->
+          <!--chart-labels="traffic.labels"-->
+          <!--chart-legend="true"-->
+          <!--chart-series="traffic.series">-->
+  <!--</canvas>-->
+  <div style="min-width: 500px; min-height: 350px" line-chart ng-data="traffic" ng-chart-options="chartOptions"></div>
+</div>

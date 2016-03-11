@@ -1,0 +1,17 @@
+For creating the Controller(with actions new,update):
+compound g controller domain new update
+
+Model creation(with fields):
+compound g model domain webpagetest_url:string cube_url:string name:string created_at:date updated_at:date
+
+Migration:
+compound g migration 
+
+To run seed:
+compound seed (used to insert the data like bootstrap.groovy grails)
+
+For running the sever:
+compound server
+
+
+compound g model filter time_range:object geography:object network:object device:object created_at:date updated_at:date

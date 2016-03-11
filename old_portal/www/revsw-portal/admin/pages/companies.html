@@ -1,0 +1,52 @@
+<ul class="nav nav-tabs" id="company_tab">
+	<li class="active">
+		<a href="#company_list" class="company_list" data-toggle="tab">
+			<span class="glyphicon glyphicon-list">
+			</span>
+			<span class="text">List</span>
+		</a>
+	</li>
+	<li class="">
+		<a href="#company_create" class="company_create" data-toggle="tab">
+			<span class="glyphicon glyphicon-plus-sign">
+			</span>
+			<span class="text">New</span>
+		</a>
+	</li>
+</ul>
+<div class="tab-content">
+	<div id="company_list" class="tab-pane fade active in">
+		<table class="table table-condensed table-responsive table-hover">
+			<thead>
+				<tr>
+					<th>Company Name</th>
+					<th>Created Date</th>
+					<th>Updated Date</th>
+					<th> </th>
+					<th> </th>
+				</tr>
+			</thead>
+			<tbody class="data">
+			</tbody>
+		</table>
+		<div class="pagination"> </div>
+	</div>
+
+	<div class="tab-pane fade" id="company_create">
+		<div class="row mart_med">
+			<form class="form-horizontal cmp_registration_form" name="cmp_registration_form" id="cmp_registration_form">
+				<div class="form-group">
+					<label class="col-sm-4 control-label">Company Name</label>
+					<div class="col-sm-8">
+                                            <input type="text" name="cmp_name" class="form-control input-sm" maxlength="50"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-4 col-sm-8">
+						<input type="button" value="Submit" class="btn btn-primary btn-sm btn-create-company"/>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

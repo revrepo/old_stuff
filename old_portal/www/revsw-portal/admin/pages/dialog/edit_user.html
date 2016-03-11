@@ -1,0 +1,81 @@
+<form class="form-horizontal edit_user" name="user_registration_form" id="edit_user_form">
+
+        <div class="form-group">
+                <label class="col-sm-4 control-label">Email</label>
+                <div class="col-sm-8">
+                        <label class="email" style="margin-top: 8px;"> </label>
+                </div>
+        </div>
+        <div class="form-group">
+                <label class="col-sm-4 control-label">Firstname</label>
+                <div class="col-sm-8">
+                        <input type="text" name="firstname" class="form-control firstname input-sm"/>
+                </div>
+        </div>
+        <div class="form-group">
+                <label class="col-sm-4 control-label">Lastname</label>
+                <div class="col-sm-8">
+                        <input type="text" name="lastname" class="form-control lastname input-sm"/>
+                </div>
+        </div>
+       
+        
+        <div class="form-group">
+                  <label class="col-sm-4 control-label">Role</label>
+                  <div class="col-sm-8">
+                    <select id="edit-role-select" name="role" class="form-control input-sm">
+                           <option value="">Select Role</option>
+                          <option value="admin">Admin</option>
+                          <option value="user">User</option>
+                          <option value="reseller">Re-Seller</option>
+                          <option value="revadmin">Rev-Admin</option>
+                    </select>
+                  </div>
+         </div>
+         
+        <div class="form-group edit_compny_new">
+                    <label class="col-sm-4 control-label">Company</label>
+                    <div class="col-sm-8">
+                   <select id="edit-company-select" name="companys" class="form-control input-sm edit-company_names">
+                </select>           
+                    </div>
+         </div>
+        
+         <div class="form-group edit_domain_new">
+                <label class="col-sm-4 control-label">Domain(s)</label>
+                <div class="col-sm-8">
+                    <select id="edit-domain-select" name="domain" class="form-control input-sm domain_names" multiple="multiple"></select>
+                    <span class="glyphicon glyphicon-info-sign add_info" data-toggle="tooltip" data-placement="bottom" title="Select multiple domains"></span>
+                </div>
+        </div>
+        
+        <div class="form-group hide">
+            <label class="col-sm-4 control-label">Access Control List</label>
+            <div class="col-sm-8 access_control_list">
+                <label class="checkbox">
+                    <input type="checkbox"  name="dashBoard" value="" disabled="disabled" checked="checked"> <span class="label_texts">Dashboard</span>
+                </label>
+                <label class="checkbox">
+                    <input type="checkbox"  name="reports" value=""> <span class="label_texts">Reports</span>
+                </label>
+                <label class="checkbox">
+                    <input type="checkbox"  name="configure" value=""> <span class="label_texts">Configure</span>
+                </label>
+                <label class="ACL_config_Opt hide">
+                    <input class="left write" name="read" type="radio" value="true"> <span class="label_texts">Read & Write</span> 
+                </label>
+               <label class="ACL_config_Opt hide">
+                    <input class="left read" name="read" type="radio" value="true"><span class="label_texts">Read-only</span>
+                </label>
+                <label class="checkbox">
+                    <input type="checkbox"  name="test" value=""> <span class="label_texts">Test</span>
+                </label>
+                <!-- <input type="text" name="username" class="form-control input-sm"/> -->
+            </div>
+        </div>
+        <div class="form-group">
+                <div class="col-sm-offset-4 col-sm-8">
+                        <input type="button" value="Save" class="btn btn-primary btn-sm btn-update-account"/>
+                </div>
+        </div>
+</form>

@@ -1,0 +1,59 @@
+<div class="row">
+  <div class="col-sm-12">
+    <h2 class="pull-left page-title">
+      Add New Company
+    </h2>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="pull-left">
+              <a ui-sref="{{state}}" class="btn btn-info">
+                <i class="glyphicon glyphicon-arrow-left"></i>&nbsp;
+                Back to List
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="panel-body">
+        <alert-list></alert-list>
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label for="name" class="col-sm-2 control-label">Company name</label>
+            <div class="col-sm-10">
+              <input type="text"
+                     class="form-control"
+                     ng-disabled="_loading"
+                     ng-model="model.companyName"
+                     id="name"
+                     placeholder="Company name">
+            </div>
+          </div>
+
+          <hr>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button class="btn btn-success" ng-click="createCompany(model)" ng-disabled="_loading">
+                <i class="glyphicon glyphicon-ok"></i>&nbsp;
+                Create company
+              </button>
+              <a ui-sref="{{state}}" class="btn btn-default">
+                <i class="glyphicon glyphicon-remove"></i>&nbsp;
+                Cancel
+              </a>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

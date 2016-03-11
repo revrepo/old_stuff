@@ -1,0 +1,113 @@
+<!-- Note that element contain ui-view child page will be added here -->
+<script type="text/ng-template" id="confirmModal.html">
+  <div class="modal-header">
+    <h3 class="modal-title">Confirm</h3>
+  </div>
+  <div class="modal-body">
+    Are you sure you want to delete key
+    <strong>{{model.key_name}}</strong>?
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-danger" type="button" ng-click="ok()">OK</button>
+    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+  </div>
+</script>
+
+<div class="container-fluid" ui-view="page">
+  <div class="row">
+    <div class="col-sm-12">
+      <h2 class="pull-left page-title">
+        API Keys List
+      </h2>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="pull-left">
+                <button ng-click="openCreateDialog()" class="btn btn-success" ng-disabled="_loading">
+                  <i class="glyphicon glyphicon-plus"></i>&nbsp;
+                  Add new API Key
+                </button>
+              </div>
+
+              <div class="pull-right">
+                <list-filter></list-filter>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel-body">
+          <alert-list></alert-list>
+          <div class="alert alert-info" ng-if="records.length == 0 && !_loading">
+            Currently there are not API keys registered in the system
+          </div>
+          <div class="alert alert-info" ng-if="_loading">
+            <i class="glyphicon glyphicon-refresh spin" ng-if="item.loading"></i>&nbsp;
+            Loading...
+          </div>
+          <crud-pagination></crud-pagination>
+          <table class="table">
+            <thead>
+            <tr>
+              <th>
+                <a href="" ng-click="order('key_name')">Name</a>
+                <span class="sortorder" ng-show="filter.predicate === 'key_name'" ng-class="{reverse: filter.key_name}"></span>
+              </th>
+              <th>
+                <a href="" ng-click="order('key')">Key</a>
+                <span class="sortorder" ng-show="filter.predicate === 'key'" ng-class="{reverse: filter.key}"></span>
+              </th>
+              <th>
+                <a href="" ng-click="order('read_only_status')">Read only</a>
+                <span class="sortorder" ng-show="filter.predicate === 'read_only_status'" ng-class="{reverse: filter.read_only_status}"></span>
+              </th>
+              <th>
+                <a href="" ng-click="order('active')">Active</a>
+                <span class="sortorder" ng-show="filter.predicate === 'active'" ng-class="{reverse: filter.active}"></span>
+              </th>
+              <th class="actions"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr
+              ng-repeat="item in records | filter:quickFilter | orderBy:filter.predicate:filter.reverse | limitTo:filter.limit:filter.skip track by $index">
+              <td>{{item.key_name}}</td>
+              <td>{{item.key}}</td>
+              <td>
+                <i class="glyphicon pointer" tooltip="Toggle active status" ng-hide="item.loading" ng-click="toggleProperty(item, 'read_only_status')" ng-class="item.read_only_status && 'glyphicon-check' || 'glyphicon-unchecked'"></i>
+              </td>
+              <td>
+                <i class="glyphicon pointer" tooltip="Toggle active status" ng-hide="item.loading" ng-click="toggleProperty(item, 'active')" ng-class="item.active && 'glyphicon-check' || 'glyphicon-unchecked'"></i>
+              </td>
+              <td class="actions">
+                <i class="glyphicon glyphicon-refresh spin" ng-if="item.loading"></i>
+                <a ng-click="openUpdateDialogFor(item.id)" ng-if="!item.loading" tooltip="Edit API Key">
+                  <i class="glyphicon glyphicon-pencil"></i>
+                </a>
+                <a href="" ng-if="!item.loading" ng-click="deleteKey(item)" tooltip="Delete API Key">
+                  <i class="glyphicon glyphicon-trash"></i>
+                </a>
+              </td>
+            </tr>
+            <!--<tr class="disabled loading">-->
+            <!--<td>John</td>-->
+            <!--<td>Doe</td>-->
+            <!--<td>Monday, Aug 10, 2015, 8:31 PM</td>-->
+            <!--<td class="actions">-->
+            <!--<i class="glyphicon glyphicon-refresh spin"></i>-->
+            <!--</td>-->
+            <!--</tr>-->
+            </tbody>
+          </table>
+          <hr>
+          <crud-pagination></crud-pagination>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+{
+  "name": "revamp",
+  "version": "1.0.0",
+  "description": "revamp qa",
+  "main": "config.js",
+  "scripts": {
+    "test-homepage": "protractor config.js --suite homepage --seleniumAddress 'http://testsjc20-build01.revsw.net:4444/wd/hub'",
+    "test-cadmin": "protractor config.js --suite cadmin --seleniumAddress 'http://testsjc20-build01.revsw.net:4444/wd/hub'",
+    "test-configure": "protractor config.js --suite configure --seleniumAddress 'http://testsjc20-build01.revsw.net:4444/wd/hub'",
+    "test-dashboard": "protractor config.js --suite dashboard --seleniumAddress 'http://testsjc20-build01.revsw.net:4444/wd/hub'",
+    "test-forgotpass": "protractor config.js --suite forgotpass --seleniumAddress 'http://testsjc20-build01.revsw.net:4444/wd/hub'",
+    "test-portal": "protractor config.js --suite portal --seleniumAddress 'http://testsjc20-build01.revsw.net:4444/wd/hub'",
+    "test-reports": "protractor config.js --suite reports --seleniumAddress 'http://testsjc20-build01.revsw.net:4444/wd/hub'",
+    "test-revadmin": "protractor config.js --suite revadmin --seleniumAddress 'http://testsjc20-build01.revsw.net:4444/wd/hub'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@projects.ronasit.com:RevAPM/QA_scripts.git"
+  },
+  "author": "Alexander Zgnetov",
+  "license": "Unknown",
+  "devDependencies": {
+    "inbox": "~1.1.59",
+    "jasmine-reporters": "~2.0.7",
+    "protractor": "~2.2.0"
+  }
+}

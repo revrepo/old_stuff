@@ -1,0 +1,37 @@
+section[drawer] {
+  background-color: @app-side-menu-background;
+
+  #logo {
+    background-color: @app-side-menu-background-logo;
+    height: @app-top-menu-height;
+    img {
+      margin: 8px 5px;
+      vertical-align: middle;
+      width: 50%;
+    }
+  }
+
+  .side-menu {
+
+    .side-menu-item {
+      cursor: pointer;
+      display: block;
+      height: @app-side-menu-item-height;
+      line-height: (@app-side-menu-item-height - 20);
+      padding: 10px;
+      font-size: 16px;
+      color: @app-side-menu-text-color;
+      border-bottom: 1px solid lighten(@app-side-menu-background, 5%);
+      text-decoration: none;
+
+      &.selected {
+        background-color: @app-side-menu-background-selected;
+      }
+
+      i {
+        margin: 0 10px;
+      }
+    }
+  }
+
+}

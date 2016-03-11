@@ -1,0 +1,28 @@
+<paper-drawer-panel responsive-width="980px" drawer-width="210px">
+  <section drawer>
+    <div id="logo">
+      <img src="images/logo_color.png" alt="Logo"/>
+    </div>
+    <div ui-view="sideMenu" class="side-menu"></div>
+  </section>
+  <section main>
+    <paper-header-panel>
+      <div class="paper-header">
+        <nav class="navbar">
+          <div class="navbar-inner">
+            <div class="navbar-header">
+              <div paper-drawer-toggle>
+                <span class="glyphicon glyphicon-menu-hamburger" paper-drawer-toggle></span>
+              </div>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" ui-view="menu"></div>
+          </div>
+        </nav>
+      </div>
+      <div class="fit">
+        <div id="top"></div>
+        <div class="page-inner" ui-view="page"></div>
+      </div>
+    </paper-header-panel>
+  </section>
+</paper-drawer-panel>

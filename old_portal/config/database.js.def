@@ -1,0 +1,25 @@
+module.exports = {
+	"development" : {
+		"driver" : "mongodb",
+		//(For Single IP)
+		//"url"    : "mongodb://54.164.198.250:27017/revportal", 
+		// (For Single IP)
+		"url"    : "mongodb://localhost:27017/revportal", 
+		 // for replica set
+		//"url"    : "mongodb://54.164.198.250:27017/revportal,mongodb://54.164.31.156:27017/revportal,mongodb://54.173.83.184:27017/revportal",
+		"rs"	 : false,
+		"replicaSet":"diabloreplica",
+  		"aditional_params":"slaveOK=true&readPreference=secondaryPreferred&connectWithNoPrimary=true",
+  		"safe":true,
+  		// both journal and fsync should nt be true. either of them should be true
+  		"journal":true, 
+  		"fsync":false,
+  		"w":1,
+	},
+	"test" : {
+		"driver" : "memory"
+	},
+	"production" : {
+		"driver" : "memory"
+	}
+};

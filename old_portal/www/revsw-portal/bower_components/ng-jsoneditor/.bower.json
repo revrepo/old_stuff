@@ -1,0 +1,34 @@
+{
+  "name": "ng-jsoneditor",
+  "main": "ng-jsoneditor.min.js",
+  "homepage": "https://github.com/angular-tools/ng-jsoneditor",
+  "authors": [
+    "angular-tools <dev@minutephp.com>"
+  ],
+  "description": "Angular version of the insanely cool jsoneditor",
+  "keywords": [
+    "jsoneditor"
+  ],
+  "bugs": "https://github.com/angular-tools/ng-jsoneditor/issues",
+  "license": "The Artistic License 2.0",
+  "dependencies": {
+    "angular": "~1.x",
+    "jsoneditor": "~4"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "_release": "f707386a1a",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "f707386a1a881dadbda4f6ac98202325951ea49a"
+  },
+  "_source": "git://github.com/angular-tools/ng-jsoneditor.git",
+  "_target": "*",
+  "_originalSource": "angular-tools/ng-jsoneditor"
+}

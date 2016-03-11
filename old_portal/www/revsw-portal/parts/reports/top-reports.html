@@ -1,0 +1,201 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <h2>Top Proxy Traffic Reports</h2>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="pull-left">
+                <form class="form-inline">
+                  <div class="form-group">
+                    <div domain-select
+                         ng-model="domain"
+                         on-select="onDomainSelected()"
+                         select-one="true"></div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel-body">
+
+          <div class="row">
+            <div class="col-md-6">
+              <h3>Edge Cache Hit/Miss Ratio</h3>
+
+              <!--<div class="alert alert-info" ng-if="!cacheStatus.data || !cacheStatus.data.length">-->
+              <div class="alert alert-info" ng-if="!cacheStatus || !cacheStatus.length">
+                No data to display
+              </div>
+              <!--<div ng-hide="!cacheStatus.data || !cacheStatus.data.length">-->
+              <div ng-hide="!cacheStatus || !cacheStatus.length">
+                <!--<canvas id="pie"-->
+                        <!--class="chart chart-pie"-->
+                        <!--chart-data="cacheStatus.data"-->
+                        <!--chart-legend="true"-->
+                        <!--chart-labels="cacheStatus.labels">-->
+                <!--</canvas>-->
+                <div style="min-width: 500px; min-height: 350px" pie-chart ng-data="cacheStatus"></div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <h3>HTTP Status Codes Ratio</h3>
+
+              <div class="alert alert-info" ng-if="!statusCode || !statusCode.length">
+                No data to display
+              </div>
+              <!--<div ng-hide="!statusCode.data || !statusCode.data.length">-->
+                <!--<canvas id="pie" class="chart chart-pie"-->
+                        <!--chart-data="statusCode.data"-->
+                        <!--chart-legend="true"-->
+                        <!--chart-labels="statusCode.labels">-->
+                <!--</canvas>-->
+              <!--</div>-->
+
+              <div ng-hide="!statusCode || !statusCode.length">
+                <div style="min-width: 500px; min-height: 350px" pie-chart ng-data="statusCode"></div>
+              </div>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-md-6">
+              <h3>HTTP/HTTPS Requests Ratio</h3>
+
+              <!--<div class="alert alert-info" ng-if="!protocol.data || !protocol.data.length">-->
+              <div class="alert alert-info" ng-if="!protocol || !protocol.length">
+                No data to display
+              </div>
+              <!--<div ng-hide="!protocol.data || !protocol.data.length">-->
+              <div ng-hide="!protocol || !protocol.length">
+                <!--<canvas id="pie" class="chart chart-pie"-->
+                        <!--chart-data="protocol.data"-->
+                        <!--chart-legend="true"-->
+                        <!--chart-labels="protocol.labels">-->
+                <!--</canvas>-->
+                <div style="min-width: 500px; min-height: 350px" pie-chart ng-data="protocol"></div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <h3>Top 10 Countries</h3>
+
+              <!--<div class="alert alert-info" ng-if="!country.data || !country.data.length">-->
+              <div class="alert alert-info" ng-if="!country || !country.length">
+                No data to display
+              </div>
+              <!--<div ng-hide="!country.data || !country.data.length">-->
+              <div ng-hide="!country || !country.length">
+                <!--<canvas id="pie" class="chart chart-pie"-->
+                        <!--chart-data="country.data"-->
+                        <!--chart-legend="true"-->
+                        <!--chart-labels="country.labels">-->
+                <!--</canvas>-->
+                <div style="min-width: 500px; min-height: 350px" pie-chart ng-data="country"></div>
+              </div>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-md-6">
+              <h3>HTTP Methods</h3>
+
+              <div class="alert alert-info" ng-if="!httpMethod || !httpMethod.length">
+                No data to display
+              </div>
+              <div ng-hide="!httpMethod || !httpMethod.length">
+                <!--<canvas id="pie" class="chart chart-pie"-->
+                        <!--chart-options="pieOpts"-->
+                        <!--chart-legend="true"-->
+                        <!--chart-data="httpMethod.data"-->
+                        <!--chart-labels="httpMethod.labels">-->
+                <!--</canvas>-->
+                <div style="min-width: 500px; min-height: 350px" pie-chart ng-data="httpMethod"></div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <h3>Top 10 HTTP Content Types</h3>
+
+              <div class="alert alert-info" ng-if="!contentType || !contentType.length">
+                No data to display
+              </div>
+              <div ng-hide="!contentType || !contentType.length">
+                <!--<canvas id="pie" class="chart chart-pie"-->
+                        <!--chart-data="contentType.data"-->
+                        <!--chart-legend="true"-->
+                        <!--chart-labels="contentType.labels">-->
+                <!--</canvas>-->
+                <div style="min-width: 500px; min-height: 350px" pie-chart ng-data="contentType"></div>
+              </div>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-md-6">
+              <h3>Top 10 OS</h3>
+
+              <div class="alert alert-info" ng-if="!os || !os.length">
+                No data to display
+              </div>
+              <div ng-hide="!os || !os.length">
+                <!--<canvas id="pie" class="chart chart-pie"-->
+                        <!--chart-data="os.data"-->
+                        <!--chart-legend="true"-->
+                        <!--chart-labels="os.labels">-->
+                <!--</canvas>-->
+                <div style="min-width: 500px; min-height: 350px" pie-chart ng-data="os"></div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <h3>Top 10 Devices</h3>
+
+              <div class="alert alert-info" ng-if="!device || !device.length">
+                No data to display
+              </div>
+              <div ng-hide="!device || !device.length">
+                <!--<canvas id="pie" class="chart chart-pie"-->
+                        <!--chart-data="device.data"-->
+                        <!--chart-legend="true"-->
+                        <!--chart-labels="device.labels">-->
+                <!--</canvas>-->
+                <div style="min-width: 500px; min-height: 350px" pie-chart ng-data="device"></div>
+              </div>
+            </div>
+          </div>
+          <hr>
+
+          <div class="row">
+            <div class="col-md-6">
+              <h3>QUIC/Non-QUIC Ratio</h3>
+
+              <!--<div class="alert alert-info" ng-if="!quic.data || !quic.data.length">-->
+              <div class="alert alert-info" ng-if="!quic || !quic.length">
+                No data to display
+              </div>
+              <!--<div ng-hide="!quic.data || !quic.data.length">-->
+              <div ng-hide="!quic || !quic.length">
+                <!--<canvas id="pie"-->
+                        <!--class="chart chart-pie"-->
+                        <!--chart-data="quic.data"-->
+                        <!--chart-legend="true"-->
+                        <!--chart-labels="quic.labels">-->
+                <!--</canvas>-->
+                <div style="min-width: 500px; min-height: 350px" pie-chart ng-data="quic"></div>
+              </div>
+            </div>
+            <!-- right col is empty yet -->
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,80 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12">
+      <h2 class="pull-left page-title">
+        Purge Cached Objects
+      </h2>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="pull-left">
+                <a ui-sref="index.webApp.advanced" class="btn btn-info">
+                  <i class="glyphicon glyphicon-cog"></i>&nbsp;
+                  Advanced mode
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="panel-body">
+          <alert-list></alert-list>
+          <form class="form-horizontal">
+
+            <div class="form-group">
+              <label for="domain" class="col-sm-2 control-label">Domain</label>
+
+              <div class="col-sm-10">
+                <div domain-select ng-model="domain" on-select="onDomainSelected()"></div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-md-5 col-md-offset-2">
+                <textarea ng-model="text" id="" style="width: 100%; height: 250px"></textarea>
+
+                <div style="margin-top: 15px">
+                  <button class="btn btn-danger"
+                          ng-disabled="_loading || !domain"
+                          ng-click="purgeText()">
+                    <i class="glyphicon glyphicon-refresh spin" ng-if="_loading"></i>
+                    <i class="glyphicon glyphicon-trash" ng-if="!_loading"></i>&nbsp;
+                    Purge
+                  </button>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="form-group ">
+                  <div class="">
+                    <label>Example:</label>
+                    <br/>Purge all PNG files under /images, non-recursive (so e.g. files under /images/today/ will not be purged):
+                    <br/>
+                    <pre>/images/*.png</pre>
+                  </div>
+                </div>
+                <div class="form-group ">
+                  <div class="">
+                    Purge everything, recursively:
+                    <pre>/**/*</pre>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

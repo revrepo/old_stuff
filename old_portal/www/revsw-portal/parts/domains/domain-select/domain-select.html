@@ -1,0 +1,10 @@
+<ui-select ng-model="ngDomain"
+           theme="select2"
+           ng-disabled="_loading"
+           on-select="onModelSelect($model)"
+           style="min-width: 300px;" >
+  <ui-select-match placeholder="Select domain">{{$select.selected.name}}</ui-select-match>
+  <ui-select-choices repeat="item in domains | filter: {name: $select.search}">
+    <small>{{item.name}}</small>
+  </ui-select-choices>
+</ui-select>

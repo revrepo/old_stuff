@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites>
+ <testsuite name="reports tests" timestamp="2015-09-13T03:05:12" hostname="localhost" time="26.159" errors="0" tests="2" skipped="0" disabled="0" failures="0">
+  <testcase classname="reports tests" name="test reports section is operable" time="9.702" />
+  <testcase classname="reports tests" name="test reports charts are visible" time="16.454" />
+ </testsuite>
+</testsuites>

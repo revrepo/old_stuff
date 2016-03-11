@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>RevAPM Customer Portal</title>
+
+  <!-- Bootstrap -->
+  <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="bower_components/jsoneditor/dist/jsoneditor.css" rel="stylesheet">
+  <link href="bower_components/angular-chart.js/dist/angular-chart.min.css" rel="stylesheet">
+  <link href="bower_components/ui-select/dist/select.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.css">
+  <link rel="stylesheet" href="//fk.github.io/select2-bootstrap-css/css/select2-bootstrap.css">
+
+  <!-- Angular -->
+  <link href="bower_components/angular/angular-csp.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/styles.css">
+
+  <script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+  <link rel="import" href="polymer/elements.html">
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+  <script src="zendesk.js"></script>
+</head>
+<body data-ng-app="revapm.Portal">
+
+<div ui-view="layout" class="layout"></div>
+
+
+<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="bower_components/lodash/lodash.min.js"></script>
+<script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="bower_components/jsoneditor/dist/jsoneditor.min.js"></script>
+<script type="text/javascript" src="bower_components/Chart.js/Chart.js"></script>
+<script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
+<script type="text/javascript" src="bower_components/highcharts/js/highcharts.js"></script>
+<script type="text/javascript" src="bower_components/d3/d3.min.js"></script>
+<script type="text/javascript" src="bower_components/topojson/topojson.js"></script>
+
+<script type="text/javascript" src="bower_components/angular/angular.js"></script>
+<script type="text/javascript" src="bower_components/angular-resource/angular-resource.min.js"></script>
+<script type="text/javascript" src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+<script type="text/javascript" src="bower_components/angular-touch/angular-touch.min.js"></script>
+<script type="text/javascript" src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+<script type="text/javascript" src="bower_components/ngstorage/ngStorage.min.js"></script>
+<script type="text/javascript" src="bower_components/angular-base64/angular-base64.min.js"></script>
+<script type="text/javascript" src="bower_components/ng-jsoneditor/ng-jsoneditor.js"></script>
+<script type="text/javascript" src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<script type="text/javascript" src="bower_components/angular-chart.js/dist/angular-chart.min.js"></script>
+<script type="text/javascript" src="bower_components/ui-select/dist/select.min.js"></script>
+
+<script src="config.js"></script>
+
+<!-- build:js scripts/compiled.js -->
+<script type="text/javascript" src="js/portal/config/config.module.js"></script>
+<script type="text/javascript" src="js/portal/config/config.constants.js"></script>
+<script type="text/javascript" src="js/portal/config/activity/activityPhrase.constants.js"></script>
+
+<script type="text/javascript" src="js/portal/shared/shared.module.js"></script>
+<script type="text/javascript" src="js/portal/shared/interceptor/http.interceptor.js"></script>
+<script type="text/javascript" src="js/portal/shared/alert/alert.service.js"></script>
+<script type="text/javascript" src="js/portal/shared/alert/alertList.directive.js"></script>
+<script type="text/javascript" src="js/portal/shared/alert/alert.directive.js"></script>
+<script type="text/javascript" src="js/portal/shared/modal/ConfirmModalInstance.controller.js"></script>
+<script type="text/javascript" src="js/portal/shared/crud/crud.controller.js"></script>
+<script type="text/javascript" src="js/portal/shared/crud/pagination.directive.js"></script>
+<script type="text/javascript" src="js/portal/shared/filter/filter.directive.js"></script>
+<script type="text/javascript" src="js/portal/shared/util/util.factory.js"></script>
+
+<script type="text/javascript" src="js/portal/resources/resources.module.js"></script>
+<script type="text/javascript" src="js/portal/resources/resources.config.js"></script>
+<script type="text/javascript" src="js/portal/resources/resource.factory.js"></script>
+<script type="text/javascript" src="js/portal/resources/model/companies.factory.js"></script>
+<script type="text/javascript" src="js/portal/resources/model/domains.factory.js"></script>
+<script type="text/javascript" src="js/portal/resources/model/domainsConfig.factory.js"></script>
+<script type="text/javascript" src="js/portal/resources/model/users.factory.js"></script>
+<script type="text/javascript" src="js/portal/resources/model/cache.factory.js"></script>
+<script type="text/javascript" src="js/portal/resources/model/stats.factory.js"></script>
+<script type="text/javascript" src="js/portal/resources/model/countries.factory.js"></script>
+<script type="text/javascript" src="js/portal/resources/model/activity.factory.js"></script>
+<script type="text/javascript" src="js/portal/resources/model/2fa.factory.js"></script>
+<script type="text/javascript" src="js/portal/resources/model/keys.factory.js"></script>
+
+<script type="text/javascript" src="js/portal/auth/auth.module.js"></script>
+<script type="text/javascript" src="js/portal/auth/auth.config.js"></script>
+<script type="text/javascript" src="js/portal/auth/auth.routes.js"></script>
+<script type="text/javascript" src="js/portal/auth/auth.run.js"></script>
+
+<script type="text/javascript" src="js/portal/auth/services/user.service.js"></script>
+<script type="text/javascript" src="js/portal/auth/menu/selectAccountDomain.directive.js"></script>
+<script type="text/javascript" src="js/portal/auth/2fa/disableTwoFactorAuth.directive.js"></script>
+<script type="text/javascript" src="js/portal/auth/login/passwordRestore.controller.js"></script>
+<script type="text/javascript" src="js/portal/auth/login/forgotpass.controller.js"></script>
+<script type="text/javascript" src="js/portal/auth/login/twoFactorAuthCodeModal.controller.js"></script>
+<script type="text/javascript" src="js/portal/auth/login/login.controller.js"></script>
+
+<script type="text/javascript" src="js/portal/auth/block/blockUserLoginLogout.directive.js"></script>
+
+<script type="text/javascript" src="js/portal/profile/profile.module.js"></script>
+<script type="text/javascript" src="js/portal/profile/profile.routes.js"></script>
+<script type="text/javascript" src="js/portal/profile/controller/profileEdit.controller.js"></script>
+<script type="text/javascript" src="js/portal/profile/controller/activityLog.controller.js"></script>
+<script type="text/javascript" src="js/portal/profile/controller/2fa.controller.js"></script>
+
+<script type="text/javascript" src="js/portal/users/users.module.js"></script>
+<script type="text/javascript" src="js/portal/users/users.routes.js"></script>
+
+<script type="text/javascript" src="js/portal/users/controller/users.controller.js"></script>
+
+<script type="text/javascript" src="js/portal/domains/domains.module.js"></script>
+<script type="text/javascript" src="js/portal/domains/domains.routes.js"></script>
+<script type="text/javascript" src="js/portal/domains/domain-select/domainSelect.directive.js"></script>
+<script type="text/javascript" src="js/portal/domains/domain-staging-status/domainStagingStatus.directive.js"></script>
+
+<script type="text/javascript" src="js/portal/domains/controller/domainsCrud.controller.js"></script>
+
+<script type="text/javascript" src="js/portal/domains/controller/domains.controller.js"></script>
+<script type="text/javascript" src="js/portal/domains/controller/domainConfigure.controller.js"></script>
+<script type="text/javascript" src="js/portal/domains/controller/domainConfigureAdvanced.controller.js"></script>
+
+<script type="text/javascript" src="js/portal/companies/companies.module.js"></script>
+<script type="text/javascript" src="js/portal/companies/companies.routes.js"></script>
+<script type="text/javascript" src="js/portal/companies/controller/companies.controller.js"></script>
+
+<script type="text/javascript" src="js/portal/cache/cache.module.js"></script>
+<script type="text/javascript" src="js/portal/cache/cache.routes.js"></script>
+<script type="text/javascript" src="js/portal/cache/controller/cachePurge.controller.js"></script>
+
+<script type="text/javascript" src="js/portal/reports/reports.module.js"></script>
+<script type="text/javascript" src="js/portal/reports/reports.routes.js"></script>
+<script type="text/javascript" src="js/portal/reports/service/d3ChartHelper.factory.js"></script>
+<script type="text/javascript" src="js/portal/reports/service/chartColorService.factory.js"></script>
+<script type="text/javascript" src="js/portal/reports/service/pieChartHelper.factory.js"></script>
+<script type="text/javascript" src="js/portal/reports/filter/timePeriods.directive.js"></script>
+<script type="text/javascript" src="js/portal/reports/filter/filterTopObjects.directive.js"></script>
+<script type="text/javascript" src="js/portal/reports/pie-chart/pieChart.directive.js"></script>
+<script type="text/javascript" src="js/portal/reports/line-chart/lineChart.directive.js"></script>
+<script type="text/javascript" src="js/portal/reports/chart/d3PieChart.directive.js"></script>
+<script type="text/javascript" src="js/portal/reports/chart/requestsChart.directive.js"></script>
+<script type="text/javascript" src="js/portal/reports/chart/hitsCacheChart.directive.js"></script>
+<script type="text/javascript" src="js/portal/reports/chart/httpStatusCodeChart.directive.js"></script>
+<script type="text/javascript" src="js/portal/reports/chart/httpHttpsChart.directive.js"></script>
+<script type="text/javascript" src="js/portal/reports/chart/requestStatusChart.directive.js"></script>
+<script type="text/javascript" src="js/portal/reports/chart/proxyTrafficChart.directive.js"></script>
+<script type="text/javascript" src="js/portal/reports/top/topRequests.directive.js"></script>
+<script type="text/javascript" src="js/portal/reports/top/topCacheMiss.directive.js"></script>
+<script type="text/javascript" src="js/portal/reports/top/top404.directive.js"></script>
+<script type="text/javascript" src="js/portal/reports/top/topReferer.directive.js"></script>
+<script type="text/javascript" src="js/portal/reports/heatmaps/heatmaps.config.js"></script>
+<script type="text/javascript" src="js/portal/reports/heatmaps/heatmaps.factory.js"></script>
+<script type="text/javascript" src="js/portal/reports/controller/reportsProxyTraffic.controller.js"></script>
+<script type="text/javascript" src="js/portal/reports/controller/topReportsTraffic.controller.js"></script>
+<script type="text/javascript" src="js/portal/reports/controller/topObjects.controller.js"></script>
+
+<script type="text/javascript" src="js/portal/reports/controller/trafficHeatmaps.controller.js"></script>
+<script type="text/javascript" src="js/portal/reports/controller/lmRTTHeatmaps.controller.js"></script>
+
+<script type="text/javascript" src="js/portal/keys/keys.module.js"></script>
+<script type="text/javascript" src="js/portal/keys/keys.routes.js"></script>
+<script type="text/javascript" src="js/portal/keys/controller/keysList.controller.js"></script>
+<script type="text/javascript" src="js/portal/keys/controller/keysCreate.controller.js"></script>
+<script type="text/javascript" src="js/portal/keys/controller/keysEdit.controller.js"></script>
+
+<script type="text/javascript" src="js/portal/app.module.js"></script>
+<script type="text/javascript" src="js/portal/app.config.js"></script>
+<script type="text/javascript" src="js/portal/app.routes.js"></script>
+<script type="text/javascript" src="js/portal/app.run.js"></script>
+<!-- endbuild -->
+</body>
+</html>

@@ -1,0 +1,52 @@
+<form class="form-horizontal edit_sgroup" name="sg_registration_form" id="edit_sgroup_form">
+
+        <div class="form-group">
+                <label class="col-sm-4 control-label">Group Name</label>
+                <div class="col-sm-8">
+                        <label class="groupName" style="margin-top: 8px;"> </label>
+                </div>
+        </div>     
+        
+        <div class="form-group">
+            <label class="col-sm-4 control-label">Group Type</label>
+            <div class="col-sm-8">
+            <select id="edit-type-select" name="groupType" class="form-control input-sm">
+                    <option value="">Select Type</option>
+                    <option value="BP">Browser Proxy</option>
+                    <option value="CO">Content Optimizer</option>
+            </select>
+            </div>
+       </div>
+        
+        <div class="form-group">
+                <label class="col-sm-4 control-label">Servers</label>
+                <div class="col-sm-8">
+                        <input type="text" name="servers" class="form-control input-sm servers"/>
+                </div>
+        </div>
+        <div id="coServerGrp"  style="display:none;">
+         <div class="form-group">
+                <label class="col-sm-4 control-label">CO DNS Names</label>
+                <div class="col-sm-8">
+                        <input type="text" name="co_cnames" class="form-control input-sm co_cnames"/>
+                </div>
+        </div>
+         <div class="form-group pubName" style="display:none;">
+					<label class="col-sm-4 control-label">Public Group Name</label>
+					<div class="col-sm-8">
+						<input type="text" name="publicName" class="form-control input-sm publicName"/>
+					</div>
+				</div>
+    	<div class="form-group">
+					<label class="col-sm-4 control-label"></label>
+					<div class="col-sm-8">
+						<input type="checkbox" name="serverType" id="serverPublic" class="form-chk input-sm serverTypePublic" value="public"/> <label class="control-label chkLabel">Public</label> <input type="checkbox" name="serverType" id="serverPrivate" class="form-chk input-sm serverTypePrivate" value="private"/> <label class="control-label chkLabel">Private</label> 
+					</div>
+				</div> 
+        </div>  
+        <div class="form-group">
+                <div class="col-sm-offset-4 col-sm-8">
+                        <input type="button" value="Save" class="btn btn-primary btn-sm btn-update-sgroup"/>
+                </div>
+        </div>
+</form>

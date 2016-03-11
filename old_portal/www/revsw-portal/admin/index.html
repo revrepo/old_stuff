@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+        <meta http-equiv='cache-control' content='no-cache'>
+        <meta http-equiv='expires' content='0'>
+        <meta http-equiv='pragma' content='no-cache'>
+		<title>RevSoftware</title>
+		<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"/>
+                <link type="text/css" rel="stylesheet" href="css/bootstrap-multiselect.css">
+		<link type="text/css" rel="stylesheet" href="css/reuse.css">
+		<link rel="stylesheet" type="text/css" href="css/jsoneditor.css">
+		<link type="text/css" rel="stylesheet" href="css/styles.css">
+                <link rel="shortcut icon" href="css/images/favicon.ico" type="image/png">
+
+		<script type="text/javascript" src="js/jquery.min.js"></script><!--jquery v1.9.1 -->
+		<script type="text/javascript" src="js/bootstrap.min.js"></script><!-- Twitter Bootstrap -->
+                <script type="text/javascript" src="js/bootstrap-multiselect.js"></script><!-- Bootstrap multiple select -->
+		<script type="text/javascript" src="js/templates.js"></script><!-- Rev -->
+		<script type="text/javascript" src="js/common.js"></script>
+		<!-- RevSw script -->
+		<script type="text/javascript" src="js/settings.js"></script><!-- Rev -->
+        <script type="text/javascript" src="../version.js"></script>
+		<script type="text/javascript" src="js/interaction.js"></script><!-- Rev -->
+		<script type="text/javascript" src="js/app.js"></script><!-- Rev --> 
+		<script type="text/javascript" src="js/jsoneditor.js"></script>
+        <script type="text/javascript" src="js/ace.js"></script>
+        <script type="text/javascript" src="js/jsonlint.js"></script>
+        <script type="text/javascript" src="js/worker-json.js"></script>
+		<!--jsonLint  -->
+	</head>
+	<body>
+		<header id="header">
+			<!--header bar starts here-->
+                        <div id="logo" class="logo">
+                            <img src="./css/images/logo_color.png"/>
+                        </div>
+                        <div class="login_box"> </div>
+		</header><!--header bar ends here-->
+                <div class="main_container">
+                    <div class="alert flash_messages fade in" style="display:none"> </div>
+                    <div class="d_conf_info fade in" style="display:none">Processing your request. Please wait...</div>
+                    <section id="menus"> </section>
+                    <section id="main"> </section>
+                    <section id="companies" class="page" style="display:none">
+                            <!--comapanies page section-->
+                    </section>
+                    <section id="users" class="page" style="display:none">
+                            <!--users page section-->
+                    </section>
+                    <section id="domains"  style="display:none" class="page">
+                            <!--domains section-->
+                    </section>
+                    <section id="accounts" style="display:none" class="page">
+                            <!--accounts section-->
+                    </section>
+
+    <!--		<section id="settings" style="display:none" class="page">
+                            settings page section
+                    </section>-->
+
+                    <section id="purge" style="display:none" class="page">
+                            <!--purge page section-->
+                        <!--purge page comes here-->
+                    </section> 
+                    <section id="domainEditor" style="display:none" class="page">
+                            <!--domain editor page section-->
+                        <!--domain editor page comes here-->
+                    </section> 
+                    <section id="serverGroups" style="display:none" class="page">
+                            <!--serverGroups page section-->
+                    </section>
+                    <section id="about" style="display:none" class="page">
+                            <!--about page section-->
+                    </section>
+                    <div class="clear">
+
+                    </div>
+                    <div class="preloading" style="display:none"> </div>
+                    <div id="loading"> </div>
+                </div>
+		<div class="modal fade" style="display:none" id="dialog" tabindex="-1" role="dialog" aria-labelledby="dialogLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+							&times;
+						</button>
+						<h4 class="modal-title" id="dialogLabel"></h4>
+					</div>
+					<div class="modal-body"></div>
+                                        <div class="modal-footer" style="display:none">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                                            <button type="button" class="btn btn-primary">Yes</button>
+                                        </div>
+				</div>
+			</div>
+		</div>
+                <footer>														<!--Footer -->
+                       <div id="footerContainer" class="footer-con">
+                                <span class="footerNoteA">®2015 Rev Software, Inc.</span>
+<!--                                <span class="footerNoteB">Rev Software Terms of Service | Privacy Policy/Your Privacy Rights</span>-->
+                        </div>
+                </footer>
+	</body>
+</html>

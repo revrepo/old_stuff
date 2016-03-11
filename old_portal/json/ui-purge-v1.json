@@ -1,0 +1,12 @@
+{
+    "version": 1,
+    "purges": [
+        {
+            "url": {
+                "is_wildcard": true,
+                "expression": "/temp/*.png",
+                "domain": "mini.net"
+            }
+        }
+    ]
+}

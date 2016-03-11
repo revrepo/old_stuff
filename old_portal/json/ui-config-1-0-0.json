@@ -1,0 +1,165 @@
+
+NEW JSON DEFINITIONS
+--------------------
+
+1. ADD DOMAIN CASE
+------------------
+{
+    "version": "1.0.1",
+    "domain_name": "rocketfuel.revsw.net",
+    "origin_domain": "rocketfuel.com",
+    "operation": "add",
+    "rev_component_co": {
+        "rum_beacon_url": "http://boom.revsw.net/service",
+        "enable_optimization": true,
+        "mode": "Bandwidth",
+        "img_choice": "high",
+        "js_choice": "high",
+        "css_choice": "high"
+    },
+    "rev_traffic_mgr": {
+        "teir": "SILVER",
+        "page_views": "40M",
+        "transfer_size": "160 TB",
+        "overage": 30
+    },
+    "rev_component_bp": {
+        "enable_cache": true,
+        "cache_opt_choice": "Rev CDN",
+        "cdn_overlay_urls": [
+            ""
+        ],
+        "cache_life_months": 1,
+        "cache_life_days": 15,
+        "cache_life_hours": 6,
+        "purge_now": true,
+        "purge_reg_expression": "Need to give the expression",
+        "enable_security": true,
+        "web_app_firewall": "block",
+        "ssl_certificates": "rev_certs",
+        "certificate_urls": []
+    },
+    "browser_proxies": {
+        "bp_01": "bp_01.revsw.net",
+        "bp_02": "bp_02.revsw.net",
+        "bp_03": "bp_03.revsw.net",
+        "": ""
+    },
+    "content_optimizers": {
+        "co_01": "co_01.revsw.net",
+        "co_02": "co_02.revsw.net",
+        "co_03": "co_03.revsw.net",
+        "": ""
+    }
+}
+
+2. UPDATE DOMAIN CASE
+---------------------
+{
+    "version": "1.0.1",
+    "domain_name": "rocketfuel.revsw.net",
+    "origin_domain": "rocketfuel.com",
+    "operation": "update",
+    "rev_component_co": {
+        "rum_beacon_url": "http://boom.revsw.net/service",
+        "enable_optimization": true,
+        "mode": "Bandwidth",
+        "img_choice": "high",
+        "js_choice": "high",
+        "css_choice": "high"
+    },
+    "rev_traffic_mgr": {
+        "teir": "SILVER",
+        "page_views": "40M",
+        "transfer_size": "160 TB",
+        "overage": 30
+    },
+    "rev_component_bp": {
+        "enable_cache": true,
+        "cache_opt_choice": "Rev CDN",
+        "cdn_overlay_urls": [
+            ""
+        ],
+        "cache_life_months": 1,
+        "cache_life_days": 15,
+        "cache_life_hours": 6,
+        "purge_now": true,
+        "purge_reg_expression": "Need to give the expression",
+        "enable_security": true,
+        "web_app_firewall": "block",
+        "ssl_certificates": "rev_certs",
+        "certificate_urls": []
+    },
+    "browser_proxies": {
+        "bp_01": "bp_01.revsw.net",
+        "bp_02": "bp_02.revsw.net",
+        "bp_03": "bp_03.revsw.net",
+        "": ""
+    },
+    "content_optimizers": {
+        "co_01": "co_01.revsw.net",
+        "co_02": "co_02.revsw.net",
+        "co_03": "co_03.revsw.net",
+        "": ""
+    }
+}
+
+3. DELETE DOMAIN CASE
+---------------------
+{
+    "version": "1.0.1",
+    "domain_name": "www.chocolate.com",
+    "origin_domain": "http://timesofindia.indiatimes.com/",
+    "operation": "delete"
+}
+
+4. CONFIG DOMAIN CASE
+---------------------
+{
+    "version": "1.0.1",
+    "domain_name": "rocketfuel.revsw.net",
+    "origin_domain": "rocketfuel.com",
+    "operation": "update",
+    "rev_component_co": {
+        "rum_beacon_url": "http://boom.revsw.net/service",
+        "enable_optimization": true,
+        "mode": "Bandwidth",
+        "img_choice": "high",
+        "js_choice": "high",
+        "css_choice": "high"
+    },
+    "rev_traffic_mgr": {
+        "teir": "SILVER",
+        "page_views": "40M",
+        "transfer_size": "160 TB",
+        "overage": 30
+    },
+    "rev_component_bp": {
+        "enable_cache": true,
+        "cache_opt_choice": "Rev CDN",
+        "cdn_overlay_urls": [
+            ""
+        ],
+        "cache_life_months": 1,
+        "cache_life_days": 15,
+        "cache_life_hours": 6,
+        "purge_now": true,
+        "purge_reg_expression": "Need to give the expression",
+        "enable_security": true,
+        "web_app_firewall": "block",
+        "ssl_certificates": "rev_certs",
+        "certificate_urls": []
+    },
+    "browser_proxies": {
+        "bp_01": "bp_01.revsw.net",
+        "bp_02": "bp_02.revsw.net",
+        "bp_03": "bp_03.revsw.net",
+        "": ""
+    },
+    "content_optimizers": {
+        "co_01": "co_01.revsw.net",
+        "co_02": "co_02.revsw.net",
+        "co_03": "co_03.revsw.net",
+        "": ""
+    }
+}

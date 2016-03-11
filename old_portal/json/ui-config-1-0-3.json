@@ -1,0 +1,122 @@
+
+NEW JSON DEFINITIONS
+--------------------
+
+1. ADD/UPDATE DOMAIN CASE
+-------------------------
+{
+    "version": "1.0.2",
+    "domain_name": "rocketfuel.revsw.net",
+    "origin_domain": "rocketfuel.com",
+    "origin_server": "server_host",
+    "origin_protocol": "http-only/https-only/both",
+    "operation": "config",
+    "config_command_options": "options",
+    "rev_component_co": {
+        "co_apache_custom_config": "custom config",
+        "rum_beacon_url": "http://boom.revsw.net/service",
+        "enable_optimization": true,
+        "mode": "aggressive",
+        "img_choice": "high",
+        "js_choice": "high",
+        "css_choice": "high"
+    },
+    "rev_traffic_mgr": {
+        "tier": "SILVER",
+        "page_views": "40M",
+        "transfer_size": "160 TB",
+        "overage": 30
+    },
+    "rev_component_bp": {
+        "bp_apache_custom_config": "custom config",
+        "enable_cache": true,
+        "cache_opt_choice": "Rev CDN",
+        "cdn_overlay_urls": [
+            ""
+        ],
+        "caching_rules": [
+            {
+                "version": 1,
+                "url": {
+                    "is_wildcard": true,
+                    "value": "url_string"
+                },
+                "edge_caching": {
+                    "override_origin": true,
+                    "new_ttl": 300
+                },
+                "browser_caching": {
+                    "override_edge": true,
+                    "new_ttl": 400,
+                    "force_revalidate": true
+                },
+                "cookies": {
+                    "override": true,
+                    "ignore_all": false,
+                    "list_is_keep": true,
+                    "keep_or_ignore_list": [
+                        "str1",
+                        "str2"
+                    ],
+                    "remove_ignored_from_request": false,
+                    "remove_ignored_from_response": false
+                }
+            },
+            {
+                "version": 1,
+                "url": {
+                    "is_wildcard": true,
+                    "value": "url_string"
+                },
+                "edge_caching": {
+                    "override_origin": true,
+                    "new_ttl": 300
+                },
+                "browser_caching": {
+                    "override_edge": true,
+                    "new_ttl": 400,
+                    "force_revalidate": true
+                },
+                "cookies": {
+                    "override": true,
+                    "ignore_all": false,
+                    "list_is_keep": true,
+                    "keep_or_ignore_list": [
+                        "str1",
+                        "str2"
+                    ],
+                    "remove_ignored_from_request": false,
+                    "remove_ignored_from_response": false
+                }
+            }
+        ],
+        "enable_security": true,
+        "web_app_firewall": "block",
+        "ssl_certificates": "rev_certs",
+        "certificate_urls": []
+    },
+    "bp_list": [
+        "bp_01.revsw.net",
+        "bp_02.revsw.net",
+        ""
+    ],
+    "co_list": [
+        "co_01.revsw.net",
+        "co_02.revsw.net",
+        ""
+    ],
+    "co_cnames": [
+        "co_cname1",
+        "co_cname2",
+        ""
+    ]
+}
+
+2. DELETE DOMAIN CASE
+---------------------
+{
+    "version": "1.0.1",
+    "domain_name": "www.chocolate.com",
+    "operation": "delete"
+}
+

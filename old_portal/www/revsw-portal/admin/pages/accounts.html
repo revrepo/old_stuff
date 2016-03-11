@@ -1,0 +1,143 @@
+<ul class="nav nav-tabs" id="account_tab">
+	<li class="active">
+		<a href="#account_list" class="account_list" data-toggle="tab">
+			<span class="glyphicon glyphicon-list">
+			</span>
+			<span class="text">List</span>
+		</a>
+	</li>
+	<li class="">
+		<a href="#account_create" class="account_create" data-toggle="tab">
+			<span class="glyphicon glyphicon-plus-sign">
+			</span>
+			<span class="text">New</span>
+		</a>
+	</li>
+</ul>
+<div class="tab-content">
+	<div id="account_list" class="tab-pane fade active in">
+		<table class="table table-condensed table-responsive table-hover">
+			<thead>
+				<tr>
+					<th class="cell_width_l">First Name</th>
+					<th class="cell_width_l">Last Name</th>
+					<th class="cell_width_l">Email</th>
+                                        <th class="cell_width_s">Role</th>
+                                        <th class="cell_width_xl">Company</th>
+					<th class="cell_width_xl">Domain(s)</th>
+					<!-- <th class="cell_width_med">Access Control List</th>  -->
+					<th class="cell_width_med">Created Date</th>
+					<th class="cell_width_med">Updated Date</th>
+					<th class="cell_width_xs"> </th>
+					<th class="cell_width_xs"> </th>
+				</tr>
+			</thead>
+			<tbody class="data">
+			</tbody>
+		</table>
+		<div class="pagination"> </div>
+	</div>
+
+	<div class="tab-pane fade" id="account_create">
+		<div class="row mart_med">
+			<form class="form-horizontal registration_form" name="registration_form" id="registration_form">
+				<div class="form-group">
+					<label class="col-sm-4 control-label">First Name</label>
+					<div class="col-sm-8">
+						<input type="text" name="firstname" class="form-control input-sm"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-4 control-label">Last Name</label>
+					<div class="col-sm-8">
+						<input type="text" name="lastname" class="form-control input-sm"/>
+					</div>
+				</div>
+				
+				 <div class="form-group">
+		          <label class="col-sm-4 control-label">Role</label>
+		          <div class="col-sm-8">
+		            <select id="role-select" name="role" class="form-control input-sm">
+		                   <option value="">Select Role</option>
+		                  <option value="admin">Admin</option>
+		                  <option value="user">User</option>
+		                  <option value="reseller">Re-Seller</option>
+		                  <option value="revadmin">Rev-Admin</option>
+		            </select>
+		          </div>
+              </div>
+              
+                <div class="form-group cmpny_new hide">
+					<label class="col-sm-4 control-label">Company</label>
+					<div class="col-sm-8">
+                   <select id="company-select" name="companys" class="form-control input-sm company_names">
+				</select>			
+					</div>
+				</div>
+				
+				<div class="form-group domain_new hide">
+					<label class="col-sm-4 control-label">Domain(s)</label>
+					<div class="col-sm-8">
+                 <select  id="domain-select" name="domain" class="form-control input-sm domain_names" multiple="multiple">
+				</select>			
+					</div>
+				</div>
+				
+				
+				
+				<div class="form-group">
+					<label class="col-sm-4 control-label">Email</label>
+					<div class="col-sm-8">
+						<input type="text" name="email" class="form-control input-sm"/>
+					</div>
+				</div>
+				<div class="form-group hide">
+					<label class="col-sm-4 control-label">Access Control List</label>
+					<div class="col-sm-8 access_control_list">
+                                        <label class="checkbox">
+                                            <input type="checkbox"  name="dashBoard" value="" disabled="disabled" checked="checked"><span class="label_texts">Dashboard</span>
+  	      				</label>
+  	      				<label class="checkbox">
+                                            <input type="checkbox"  name="reports" value=""> <span class="label_texts">Reports</span>
+  	      				</label>
+  	      				<label class="checkbox">
+                                            <input type="checkbox"  name="configure" value=""> <span class="label_texts">Configure</span>
+  	      				</label>
+  	      				<label class="ACL_config_Opt hide">
+	  	      			 	<input class="left write" name="read" type="radio" checked="checked" value="true"><span class="label_texts">Read & Write</span> 
+                                        </label>
+                                        <label class="ACL_config_Opt hide">
+                                                <input class="left read" name="read" type="radio" value="true"><span class="label_texts">Read-only</span>
+                                        </label>	                    
+  	      				<label class="checkbox ">
+  	      					<input type="checkbox"  name="test" value=""><span class="label_texts">Test</span>
+  	      				</label>
+						<!-- <input type="text" name="username" class="form-control input-sm"/> -->
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-4 control-label">Password</label>
+					<div class="col-sm-8">
+						<input type="password" name="password" class="form-control input-sm"/>
+					</div>
+					
+				</div>
+				
+				<div class="password_label">( Special characters allowed are ~!$%^@)
+				</div> 
+				
+				<div class="form-group">
+					<label class="col-sm-4 control-label">Confirm Password</label>
+					<div class="col-sm-8">
+						<input type="password" name="confirm_password" class="form-control input-sm"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-4 col-sm-8">
+						<input type="button" value="Submit" class="btn btn-primary btn-sm btn-create-account"/>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

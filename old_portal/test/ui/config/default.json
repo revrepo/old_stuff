@@ -1,0 +1,35 @@
+{
+  "protractor": {
+    "seleniumAddress": "http://127.0.0.1:4444/wd/hub"
+  },
+  "portal": {
+    "host": {
+      "protocol": "http",
+      "name": "localhost",
+      "port": 3000,
+      "path": null// "portal/www/revsw-portal"
+    },
+    "users": {
+      "revAdmin": {
+        "email": "qa_user_with_rev-admin_perm@revsw.com",
+        "password": "password1"
+      },
+      "reseller": {
+        "email": "api_qa_user_with_reseller_perm@revsw.com",
+        "password": "password1"
+      },
+      "secondReseller": {
+        "email": "api_qa_user_2_with_reseller_perm@revsw.com",
+        "password": "password1"
+      },
+      "admin": {
+        "email": "api_qa_user_with_admin_perm@revsw.com",
+        "password": "password1"
+      },
+      "user": {
+        "email": "qa_user_with_user_perm@revsw.com",
+        "password": "password1"
+      }
+    }
+  }
+}
