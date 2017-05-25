@@ -1,0 +1,255 @@
+# Logic for the ImageEngine system.
+# Note: this is included in vcl_recv()
+
+############################################################################
+## Request cleanup / normalization
+############################################################################
+
+if (req.http.host ~ ":\d+$") {
+    var.set_string("port", regsub(req.http.host, "^.*(:\d+)$","\1"));
+} else {
+    var.set_string("port", "");
+}
+
+# Strip the port from the Host header as it is not relevant
+# Also, lowercase the hostname
+set req.http.host = std.tolower(regsub(req.http.host, ":[0-9]+$",""));
+
+# Fix issue where the colon in the URL is replaced with "%3A"
+# JIRA Issue #IR-90
+set req.url = regsub(req.url, "^(.*?/https?)%3A(/.+)$", "\1:\2");
+
+# Fix issue where target image URL is missing second slash to avoid protocol violation
+# JIRA Issue #IR-87
+set req.url = regsub(req.url, "^(.*?/https?:/)([^/].+)$", "\1/\2");
+
+# Fix the issue where a relative scheme was used (the scheme was excluded)
+# JIRA Issue #IR-82
+if (req.url !~ "https?://") {
+    set req.url = regsub(req.url, "^(.*?/)(//.+)$", "\1http:\2");
+}
+
+# Build the original URL and pass it back to the backends
+if (req.http.X-Forwarded-Proto == "https") {
+    var.set_string("scheme", "https");
+    if (var.get_string("port") == "443") {
+        var.set_string("port", "");
+    }
+} else {
+    var.set_string("scheme", "http");
+    if (var.get_string("port") == "80") {
+        var.set_string("port", "");
+    }
+}
+
+############################################################################
+## Setup variables to be used throughout the logic
+############################################################################
+
+var.set_string("vary", "");
+var.set_string("original_url", req.url);
+var.set_string("target_image", regsub(req.url, "^.*?/(https?://.*)", "\1"));
+var.set_string("directives", regsub(req.url, "^(.*?)/https?://.*", "\1"));
+var.set_string("referer", regsub(req.http.referer, "^\s*https?://([^/:]+).*", "\1"));
+var.set_string("unsupported_formats", "");
+
+var.set_int("auto", 0);
+var.set_int("free", 0);
+
+############################################################################
+## Setup ImageEngine proxy token and settings
+############################################################################
+
+# Hardcode host header going to backend
+var.set_string("host", "reva.imgeng.in");
+# Default to sending misses to the proper lite miss server
+var.set_string("token", "reva");
+var.set_string("miss_host", "reva.miss.imgeng.in");
+var.set_string("type", "be");
+
+if (req.http.host ~ "miss") {
+    set req.http.X-WIT-SYNC = "true";
+} else {
+    set req.http.X-MISS-URL = var.get_string("scheme") + "://" + var.get_string("miss_host") + var.get_string("port") + req.url;
+    var.set_string("debug", req.http.X-MISS-URL);
+}
+
+############################################################################
+## Determine if this request is explicit or automatic
+############################################################################
+
+if (var.get_string("directives") ~ "/a_true") {
+    # Explicitly enabled auto mode
+    var.set_int("auto", 1);
+
+} else if (req.url ~ "^/[0-9]{6}/") {
+    # Old-style token was used which enables explicit mode
+    var.set_string("token", regsub(req.url, "^/([0-9]{6})/.*$", "\1"));
+    var.set_string("directives", regsub(var.get_string("directives"), "^/[0-9]{6}", ""));
+    var.set_int("auto", 0);
+
+} else if (req.url ~ "^/http") {
+    # URL starts with `/http` so there are no directives.  This must be auto mode.
+    var.set_int("auto", 1);
+
+} else {
+    # All other cases are explicit mode
+    var.set_int("auto", 0);
+}
+
+# Override explicit resizing if auto-only directives are provided
+if (var.get_string("directives") ~ "/pc_[^/]+") {
+    # Percentage is present so this will be an auto request
+    var.set_int("auto", 1);
+}
+
+############################################################################
+## Determine unsupported image formats
+############################################################################
+
+if (req.http.accept ~ "webp" || wurfl.get_capability("webp_lossy_support") == "true" || wurfl.get_capability("webp_lossless_support") == "true") {
+    # webp is supported, so we don't include it in the blacklist
+} else {
+    var.set_string("unsupported_formats", var.get_string("unsupported_formats") + "_webp");
+}
+
+############################################################################
+## Take different actions based on explicit or automatic or client-hints
+############################################################################
+
+if (var.get_int("auto") == 0) {
+
+    ### Explicit Mode
+
+    # In explicit mode, all directives are passed to the backend server
+    var.set_string("new_directives", var.get_string("directives"));
+
+} else {
+
+    ### Auto Mode
+
+    ############################################################################
+    ## Prepare new directives to be sent to backend server
+    ############################################################################
+    var.set_string("new_directives", "");
+
+    # Format (f_) and Crop Method (m_) are added to new_directives
+    if (var.get_string("directives") ~ "/f_[^/]+") {
+        var.set_string("new_directives", var.get_string("new_directives") + regsub(var.get_string("directives"), "^.*?(/f_[^/]+).*$", "\1"));
+    }
+
+    if (var.get_string("directives") ~ "/m_[^/]+") {
+        var.set_string("new_directives", var.get_string("new_directives") + regsub(var.get_string("directives"), "^.*?(/m_[^/]+).*$", "\1"));
+    }
+
+    ############################################################################
+    ## Determine new image width
+    ############################################################################
+
+    # Get DPR and Width
+    # Vary: DPR, Width
+    # Send: Content-DPR: DPR
+
+    if (req.http.dpr && req.http.width) {
+        # Use client hints to determine width
+        var.set_string("new_width", req.http.width);
+
+        # We'll use this to send the Content-DPR header later
+        var.set_string("content_dpr", req.http.dpr);
+
+        # Add "Width" to the Vary header
+        var.set_string("vary", var.get_string("vary") + "Width, ");
+
+    } else if (req.http.dpr && req.http.viewport-width) {
+        # Use client hints to determine width
+
+        if (req.http.dpr ~ "\.") {
+            # Non-integral DPR Math
+
+            # From "2.0"  capture ["2","0"],  return 20
+            # From "1.75" capture ["1", "7"], return 17
+
+            # NOTE: if std.integer() fails to parse the regsub() result, it will return 10 (which will be divided by 10 later to get a 1x multiplier)
+            var.set_int("dpr", std.integer(regsub(req.http.dpr, "(\d+)?\.(\d)", "\1\2"), 10));
+
+            # NOTE: the ' "" +  ' prefix is required to implicitly typecast the INT to a STRING, otherwise set_string() will fail
+            var.set_string("new_width", "" + (  std.integer(req.http.viewport-width, 0) * var.get_int("dpr") / 10  ));
+
+        } else {
+            var.set_string("new_width", "" + (  std.integer(req.http.viewport-width, 0) * std.integer(req.http.dpr, 2)  ));
+        }
+
+        # We'll use this to send the Content-DPR header later
+        var.set_string("content_dpr", req.http.dpr);
+
+        # Add "Viewport-Width" and "DPR" to the Vary header
+        var.set_string("vary", var.get_string("vary") + "Viewport-Width, DPR, ");
+
+    } else if (wurfl.get_capability("is_wireless_device") == "true") {
+
+        if (wurfl.get_capability("is_tablet") == "true") {
+            # For tablets we use max_image_height because they are normally used in LANDSCAPE orientation
+            
+            # Since WURFL inconsistently models the orientation of tablets, we normalize it
+            if (std.integer(wurfl.get_capability("max_image_width"), 1280) > std.integer(wurfl.get_capability("max_image_height"), 0)) {
+                # This is modeled in landscape orientation - it's wider than it is tall
+                var.set_string("new_width", wurfl.get_capability("max_image_width"));
+            } else {
+                # This is modeled in portrait orientation - it's taller than it is wide
+                var.set_string("new_width", wurfl.get_capability("max_image_height"));
+            }
+
+        } else {
+            # For everything else we use max_image_width because they are in PORTRAIT orientation
+            var.set_string("new_width", wurfl.get_capability("max_image_width"));
+        }
+
+        # Add "User-Agent" to the Vary header
+        var.set_string("vary", var.get_string("vary") + "User-Agent, ");
+
+    } else {
+        # Non-mobile, use hard-coded maximum
+        var.set_string("new_width", "2560");
+
+        # Add "User-Agent" to the Vary header since WURFL was used to determine that WURFL couldn't be used :)
+        var.set_string("vary", var.get_string("vary") + "User-Agent, ");
+    }
+
+    if (var.get_string("directives") ~ "/pc_[^/]+") {
+        # Calculate the new width like this: new_width = (percent / 100) * new_width
+        # Note that floating point math is tricky in VCL, so to keep things integral, we do new_width = new_width * percent / 100
+        var.set_int("new_width", std.integer(regsub(var.get_string("directives"), "^.*?/pc_([^/]+).*$", "\1"), 0) * std.integer(var.get_string("new_width"), 0) / 100);
+        var.set_string("new_directives", var.get_string("new_directives") + "/w_" + var.get_int("new_width"));
+    } else {
+        var.set_string("new_directives", var.get_string("new_directives") + "/w_" + var.get_string("new_width"));
+    }
+
+    # `/a_*` and `/pc_*` should never make it back to the origin server
+    var.set_string("directives", regsuball(var.get_string("directives"), "/(?:a|pc)_[^/]+", ""));
+
+    if (var.get_int("free") == 1) {
+        # For free requests, none of the original directives are passed through directly
+        
+    } else {
+        # Remove params that are already set in auto mode
+        var.set_string("directives", regsuball(var.get_string("directives"), "/(?:w|h|m)_[^/]+", ""));
+
+        # Pass through the original (sanitized) directives
+        var.set_string("new_directives", var.get_string("new_directives") + var.get_string("directives"));
+    }
+}
+
+# Add unsupported image formats
+if (var.get_string("unsupported_formats") != "") {
+    # Each unsupported format is added with "_" prepended, so this might look like "_webp_bmp_gif"
+    # then we prepend "/naf" to it to make "/naf_webp_bmp_gif" and add that to the directives
+    var.set_string("new_directives", var.get_string("new_directives") + "/naf" + var.get_string("unsupported_formats"));
+}
+
+# At this point, no matter what path was taken, new_directives contains all the directives that need to go
+#  back to the image resizer backend server.  We add a "/" and the origin image URL to it an we're good!
+var.set_string("backend_uri", var.get_string("new_directives") + "/" + var.get_string("target_image"));
+set req.url = var.get_string("backend_uri");
+
+# Force the host header to mask the domain
+set req.http.host = var.get_string("host");
