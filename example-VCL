@@ -1,3 +1,126 @@
+vcl 4.0;
+
+import directors;
+import std;
+import wurfl;
+import var;
+
+acl purgers {
+    "localhost";
+    "127.0.0.1";
+    "172.16.0.0"/12;
+    "192.168.0.0"/16;
+}
+
+backend imageengine_hit {
+    .host = "reva.imgeng.in";
+    .port = "80";
+    .connect_timeout = 2s;
+    .first_byte_timeout = 10s;
+    .between_bytes_timeout = 2s;
+}
+
+backend imageengine_miss {
+    .host = "reva.miss.imgeng.in";
+    .port = "80";
+    .connect_timeout = 2s;
+    .first_byte_timeout = 15s;
+    .between_bytes_timeout = 2s;
+}
+
+sub vcl_init {
+
+    # Load and initialize WURFL components
+#    include "imageengine/wurfl.vcl";
+# Varnish WURFL Initialization
+# This is included in vcl_init()
+
+wurfl.set_root("/usr/share/wurfl/wurfl.xml");
+#wurfl.add_patch("...");
+
+#wurfl.set_engine_target_high_performance();
+wurfl.set_engine_target_high_accuracy();
+
+wurfl.set_useragent_priority_override_sideloaded_browser_useragent();
+#wurfl.set_useragent_priority_use_plain_useragent();
+
+#wurfl.set_cache_provider_none();
+#wurfl.set_cache_provider_lru(100000);
+wurfl.set_cache_provider_double_lru(10000,3000);
+
+# Required Capabilities
+# DO NOT REMOVE, EVEN IF THEY AREN'T USED!
+wurfl.add_requested_capability("device_os");
+wurfl.add_requested_capability("device_os_version");
+wurfl.add_requested_capability("is_tablet");
+wurfl.add_requested_capability("is_wireless_device");
+wurfl.add_requested_capability("pointing_method");
+wurfl.add_requested_capability("preferred_markup");
+wurfl.add_requested_capability("resolution_height");
+wurfl.add_requested_capability("resolution_width");
+wurfl.add_requested_capability("ux_full_desktop");
+wurfl.add_requested_capability("xhtml_support_level");
+wurfl.add_requested_capability("is_smarttv");
+wurfl.add_requested_capability("brand_name");
+wurfl.add_requested_capability("can_assign_phone_number");
+wurfl.add_requested_capability("marketing_name");
+wurfl.add_requested_capability("model_name");
+wurfl.add_requested_capability("mobile_browser_version");
+
+# Optional WURFL Capabilities to be loaded
+wurfl.add_requested_capability("max_image_width");
+wurfl.add_requested_capability("max_image_height");
+wurfl.add_requested_capability("webp_lossy_support");
+wurfl.add_requested_capability("webp_lossless_support");
+
+wurfl.load();
+if (wurfl.error()) {
+#    std.log(wurfl.error());
+
+    # TODO: Varnish 4.x does not support panic
+    #panic wurfl.error();
+}
+
+}
+
+sub vcl_recv {
+
+    # We choose the director based on the HTTP Host header (the hostname used to get here)
+    if (req.http.host ~ "miss") {
+        set req.backend_hint = imageengine_miss;
+    } else {
+        set req.backend_hint = imageengine_hit;
+    }
+
+    # Forcibly remove cookies
+    unset req.http.Cookie;
+
+    # Mitigate httpoxy attack
+    unset req.http.proxy;
+
+    if (req.url == "/favicon.ico") {
+        return (hash);
+    }
+
+    # Handle compression correctly. Different browsers send different
+    # "Accept-Encoding" headers, even though they mostly all support the same
+    # compression mechanisms. By consolidating these compression headers into
+    # a consistent format, we can reduce the size of the cache and get more hits.
+    # @see: http:// varnish.projects.linpro.no/wiki/FAQ/Compression
+    if (req.http.Accept-Encoding) {
+        if (req.http.Accept-Encoding ~ "gzip") {
+            # If the browser supports it, we'll use gzip.
+            set req.http.Accept-Encoding = "gzip";
+        } else if (req.http.Accept-Encoding ~ "deflate") {
+            # Next, try deflate if it is supported.
+            set req.http.Accept-Encoding = "deflate";
+        } else {
+            # Unknown algorithm. Remove it and send unencoded.
+            unset req.http.Accept-Encoding;
+        }
+    }
+
+#    include "imageengine/edge_cache_logic.vcl";
 # Logic for the ImageEngine system.
 # Note: this is included in vcl_recv()
 
@@ -253,3 +376,120 @@ set req.url = var.get_string("backend_uri");
 
 # Force the host header to mask the domain
 set req.http.host = var.get_string("host");
+
+
+    if (req.method == "PURGE") {
+        if (!client.ip ~ purgers) {
+            return (synth(405, "Purge Access Denied"));
+        }
+        return (hash);
+    }
+}
+
+sub vcl_hash {
+    hash_data(var.get_string("token"));
+    hash_data(var.get_string("referer"));
+    hash_data(var.get_string("backend_uri"));
+
+    return (lookup);
+}
+
+sub vcl_hit {
+    if (req.method == "PURGE"){
+        #
+        # This is now handled in vcl_recv.
+        #
+        # purge;
+        return (synth(200, "Purged."));
+    }
+}
+
+sub vcl_miss {
+    if (req.method == "PURGE") {
+        # Use ban instead of purge to allow regex for req.url
+        ban("req.http.host == " + req.http.host + " && req.url ~ " + req.url + "$");
+        return (synth(200, "Purged."));
+    }
+}
+
+sub vcl_backend_response {
+
+    # The ImageEngine servers send a very conservative Vary header that will make most caching impossible,
+    # but this edge config computes a new hash so we will ignore Vary, then pass it to the client later.  
+    if (beresp.http.Vary) {
+        var.set_string("backend_vary", beresp.http.Vary);
+        unset beresp.http.Vary;
+    } else {
+        var.set_string("backend_vary", "");
+    }
+
+    # This keeps the objects longer than the TTL specifies in case we get bombarded with requests
+    #  when a TTL expires, in which case some of the requests in the queue will get stale cached content
+    #  while we wait for the new data to be fetched from the backend servers.
+    set beresp.grace = 2h;
+
+    if (beresp.status == 404) {
+        # Cache 404s for a short time
+        unset beresp.http.cache-control;
+        unset beresp.http.pragma;
+        unset beresp.http.expires;
+
+        set beresp.uncacheable = false;
+        set beresp.ttl = 30s;
+
+    } elseif (beresp.status >= 300 && beresp.status < 400) {
+        # Don't cache redirects
+        unset beresp.http.cache-control;
+        unset beresp.http.pragma;
+        unset beresp.http.expires;
+
+        set beresp.uncacheable = false;
+        set beresp.ttl = 0s;
+
+    } elseif (beresp.status >= 500 && beresp.status < 600) {
+        # Cache server errors for only a tiny time
+        unset beresp.http.cache-control;
+        unset beresp.http.pragma;
+        unset beresp.http.expires;
+
+        set beresp.uncacheable = false;
+        set beresp.ttl = 5s;
+
+    } elseif (beresp.ttl < 1h) {
+        # Cache everything valid for at least 1 hour regardless of cache control
+        set beresp.uncacheable = false;
+        set beresp.ttl = 1h;
+    }
+
+    # Return deliver here to avoid the varnish logic that hit-for-passes 0s ttl objects
+    #   https://www.varnish-cache.org/trac/browser/bin/varnishd/builtin.vcl?rev=4.0#L154
+    return (deliver);
+}
+
+sub vcl_deliver {
+
+    # Send the Vary header that we received from the upstream Varnish server
+    if (var.get_string("backend_vary") != "") {
+        set resp.http.Vary = var.get_string("backend_vary");
+    }
+
+    set resp.http.X-Rszr-Type = var.get_string("type");
+
+    # Enable this to see the URL being sent to the explicit resizer
+    set resp.http.X-Rszr-URL = req.url;
+
+    # Expose the cache state of the upstream ImageEngine service
+    if (resp.http.X-Cache) {
+        set resp.http.X-Upstream-Cache = resp.http.X-Cache;
+    }
+
+    if (obj.hits > 0) {
+        set resp.http.X-Cache = "HIT";
+    } elseif (obj.uncacheable) {
+        set resp.http.X-Cache = "MISS HFP";
+    } else {
+        set resp.http.X-Cache = "MISS";
+    }
+
+}
+
