@@ -211,7 +211,6 @@
   "origin_secure_protocol": "https_only",
   "origin_server": "sjc03-ws01.nuubit.net",
   "origin_host_header": "www.nuubit.com",
-  "account_id": "588ae633269f246b4c495514",
   "tolerance": "3000",
   "origin_server_location_id": "547368be5e4ac42646be001f",
   "enable_ssl": true,
